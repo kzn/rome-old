@@ -50,7 +50,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
     /**
      * Properties to be ignored when cloning.
      */
-    private static final Set IGNORE_PROPERTIES = new HashSet();
+    private static final Set<String> IGNORE_PROPERTIES = new HashSet<String>();
 
     /**
      * Unmodifiable Set containing the convenience properties of this class.
@@ -59,7 +59,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * properties can be ignored as the will be copied as part of the module
      * cloning.
      */
-    public static final Set CONVENIENCE_PROPERTIES = Collections.unmodifiableSet(IGNORE_PROPERTIES);
+    public static final Set<String> CONVENIENCE_PROPERTIES = Collections.unmodifiableSet(IGNORE_PROPERTIES);
 
     static {
         IGNORE_PROPERTIES.add("title");
@@ -96,7 +96,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getTitles() {
+    public List<String> getTitles() {
         return (_title == null) ? (_title = new ArrayList<String>()) : _title;
     }
 
@@ -140,7 +140,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getCreators() {
+    public List<String> getCreators() {
         return (_creator == null) ? (_creator = new ArrayList<String>()) : _creator;
     }
 
@@ -184,7 +184,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getSubjects() {
+    public List<DCSubject> getSubjects() {
         return (_subject == null) ? (_subject = new ArrayList<DCSubject>()) : _subject;
     }
 
@@ -229,7 +229,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		description, an empty list if none.
      *
      */
-    public List getDescriptions() {
+    public List<String> getDescriptions() {
         return (_description == null) ? (_description = new ArrayList<String>()) : _description;
     }
 
@@ -274,7 +274,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getPublishers() {
+    public List<String> getPublishers() {
         return (_publisher == null) ? (_publisher = new ArrayList<String>()) : _publisher;
     }
 
@@ -319,7 +319,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getContributors() {
+    public List<String> getContributors() {
         return (_contributors == null) ? (_contributors = new ArrayList<String>()) : _contributors;
     }
 
@@ -364,7 +364,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getDates() {
+    public List<Date> getDates() {
         return (_date == null) ? (_date = new ArrayList<Date>()) : _date;
     }
 
@@ -408,7 +408,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getTypes() {
+    public List<String> getTypes() {
         return (_type == null) ? (_type = new ArrayList<String>()) : _type;
     }
 
@@ -453,7 +453,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getFormats() {
+    public List<String> getFormats() {
         return (_format == null) ? (_format = new ArrayList<String>()) : _format;
     }
 
@@ -498,7 +498,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getIdentifiers() {
+    public List<String> getIdentifiers() {
         return (_identifier == null) ? (_identifier = new ArrayList<String>()) : _identifier;
     }
 
@@ -543,7 +543,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getSources() {
+    public List<String> getSources() {
         return (_source == null) ? (_source = new ArrayList<String>()) : _source;
     }
 
@@ -588,7 +588,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getLanguages() {
+    public List<String> getLanguages() {
         return (_language == null) ? (_language = new ArrayList<String>()) : _language;
     }
 
@@ -632,7 +632,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getRelations() {
+    public List<String> getRelations() {
         return (_relation == null) ? (_relation = new ArrayList<String>()) : _relation;
     }
 
@@ -677,7 +677,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getCoverages() {
+    public List<String> getCoverages() {
         return (_coverage == null) ? (_coverage = new ArrayList<String>()) : _coverage;
     }
 
@@ -722,7 +722,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *         an empty list if none.
      *
      */
-    public List getRightsList() {
+    public List<String> getRightsList() {
         return (_rights == null) ? (_rights = new ArrayList<String>()) : _rights;
     }
 
@@ -804,7 +804,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
         return _objBean.toString();
     }
     
-    public final Class getInterface() {
+    public final Class<?> getInterface() {
         return DCModule.class;
     }
 

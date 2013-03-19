@@ -70,7 +70,7 @@ public class DCModuleParser implements ModuleParser {
         boolean foundSomething = false;
         DCModule dcm = new DCModuleImpl();
 
-        List eList = dcRoot.getChildren("title", getDCNamespace());
+        List<Element> eList = dcRoot.getChildren("title", getDCNamespace());
         if (eList.size() > 0) {
             foundSomething = true;
             dcm.setTitles(parseElementList(eList));

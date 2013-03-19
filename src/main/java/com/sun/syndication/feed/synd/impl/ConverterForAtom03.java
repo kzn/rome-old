@@ -214,7 +214,7 @@ public class ConverterForAtom03 implements Converter {
 
         Content content = entry.getSummary();
         if (content==null) {
-            List contents = entry.getContents();
+            List<Content> contents = entry.getContents();
             if (contents!=null && contents.size()>0) {
                 content = (Content) contents.get(0);
             }
@@ -226,7 +226,7 @@ public class ConverterForAtom03 implements Converter {
             syndEntry.setDescription(sContent);
         }
 
-        List contents = entry.getContents();
+        List<Content> contents = entry.getContents();
         if (contents.size()>0) {
             List<SyndContent> sContents = new ArrayList<SyndContent>();
             for (int i=0;i<contents.size();i++) {
@@ -295,9 +295,9 @@ public class ConverterForAtom03 implements Converter {
         // separate SyndEntry's links collection into alternate and other links
         List<Link> alternateLinks = new ArrayList<Link>();
         List<Link> otherLinks = new ArrayList<Link>();
-        List slinks = syndFeed.getLinks();
+        List<SyndLink> slinks = syndFeed.getLinks();
         if (slinks != null) {
-            for (Iterator iter=slinks.iterator(); iter.hasNext();) {
+            for (Iterator<SyndLink> iter=slinks.iterator(); iter.hasNext();) {
                 SyndLink syndLink = (SyndLink)iter.next();
                 Link link = createAtomLink(syndLink);
                 if (link.getRel() == null ||
@@ -338,7 +338,7 @@ public class ConverterForAtom03 implements Converter {
 
         aFeed.setModified(syndFeed.getPublishedDate());
 
-        List sEntries = syndFeed.getEntries();
+        List<SyndEntry> sEntries = syndFeed.getEntries();
         if (sEntries!=null) {
             aFeed.setEntries(createAtomEntries(sEntries));
         }
@@ -374,7 +374,7 @@ public class ConverterForAtom03 implements Converter {
         return persons;
     }
     
-    protected List<Entry> createAtomEntries(List syndEntries) {
+    protected List<Entry> createAtomEntries(List<SyndEntry> syndEntries) {
         List<Entry> atomEntries = new ArrayList<Entry>();
         for (int i=0;i<syndEntries.size();i++) {
             atomEntries.add(createAtomEntry((SyndEntry)syndEntries.get(i)));
@@ -406,9 +406,9 @@ public class ConverterForAtom03 implements Converter {
         // separate SyndEntry's links collection into alternate and other links
         List<Link> alternateLinks = new ArrayList<Link>();
         List<Link> otherLinks = new ArrayList<Link>();
-        List slinks = sEntry.getLinks();
+        List<SyndLink> slinks = sEntry.getLinks();
         if (slinks != null) {
-            for (Iterator iter=slinks.iterator(); iter.hasNext();) {
+            for (Iterator<SyndLink> iter=slinks.iterator(); iter.hasNext();) {
                 SyndLink syndLink = (SyndLink)iter.next();
                 Link link = createAtomLink(syndLink);
                 if (link.getRel() == null ||
@@ -428,9 +428,9 @@ public class ConverterForAtom03 implements Converter {
             alternateLinks.add(link);
         }
 
-        List sEnclosures = sEntry.getEnclosures();
+        List<SyndEnclosure> sEnclosures = sEntry.getEnclosures();
         if (sEnclosures != null) {
-            for (Iterator iter=sEnclosures.iterator(); iter.hasNext();) {
+            for (Iterator<SyndEnclosure> iter=sEnclosures.iterator(); iter.hasNext();) {
                 SyndEnclosure syndEnclosure = (SyndEnclosure) iter.next();
                 Link link = createAtomEnclosure(syndEnclosure);
                 otherLinks.add(link);
@@ -450,7 +450,7 @@ public class ConverterForAtom03 implements Converter {
             aEntry.setSummary(content);
         }
 
-        List contents = sEntry.getContents();
+        List<SyndContent> contents = sEntry.getContents();
         if (contents.size()>0) {
             List<Content> aContents = new ArrayList<Content>();
             for (int i=0;i<contents.size();i++) {

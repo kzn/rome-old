@@ -76,7 +76,7 @@ public class Atom03Parser extends BaseWireFeedParser {
             feed.setTitleEx(parseContent(e));
         }
 
-        List eList = eFeed.getChildren("link",getAtomNamespace());
+        List<Element> eList = eFeed.getChildren("link",getAtomNamespace());
         feed.setAlternateLinks(parseAlternateLinks(eList));
         feed.setOtherLinks(parseOtherLinks(eList));
 
@@ -139,7 +139,7 @@ public class Atom03Parser extends BaseWireFeedParser {
             feed.setEntries(parseEntries(eList));
         }
 
-        List foreignMarkup = 
+        List<Element> foreignMarkup = 
             extractForeignMarkup(eFeed, feed, getAtomNamespace());
         if (foreignMarkup.size() > 0) {
             feed.setForeignMarkup(foreignMarkup);
@@ -165,10 +165,10 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Link)
-    private List<Link> parseLinks(List eLinks,boolean alternate) {
+    private List<Link> parseLinks(List<Element> eLinks,boolean alternate) {
         List<Link> links = new ArrayList<Link>();
         for (int i=0;i<eLinks.size();i++) {
-            Element eLink = (Element) eLinks.get(i);
+            Element eLink = eLinks.get(i);
             String rel = getAttributeValue(eLink, "rel");
             if (alternate) {
                 if ("alternate".equals(rel)) {
@@ -185,12 +185,12 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Link)
-    private List<Link> parseAlternateLinks(List eLinks) {
+    private List<Link> parseAlternateLinks(List<Element> eLinks) {
         return parseLinks(eLinks,true);
     }
 
     // List(Elements) -> List(Link)
-    private List<Link> parseOtherLinks(List eLinks) {
+    private List<Link> parseOtherLinks(List<Element> eLinks) {
         return parseLinks(eLinks,false);
     }
 
@@ -212,10 +212,10 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Persons)
-    private List<Person> parsePersons(List ePersons) {
+    private List<Person> parsePersons(List<Element> ePersons) {
         List<Person> persons = new ArrayList<Person>();
         for (int i=0;i<ePersons.size();i++) {
-            persons.add(parsePerson((Element)ePersons.get(i)));
+            persons.add(parsePerson(ePersons.get(i)));
         }
         return (persons.size()>0) ? persons : null;
     }
@@ -261,10 +261,10 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Entries)
-    private List<Entry> parseEntries(List eEntries) {
+    private List<Entry> parseEntries(List<Element> eEntries) {
         List<Entry> entries = new ArrayList<Entry>();
         for (int i=0;i<eEntries.size();i++) {
-            entries.add(parseEntry((Element)eEntries.get(i)));
+            entries.add(parseEntry(eEntries.get(i)));
         }
         return (entries.size()>0) ? entries : null;
     }
@@ -277,7 +277,7 @@ public class Atom03Parser extends BaseWireFeedParser {
             entry.setTitleEx(parseContent(e));
         }
 
-        List eList = eEntry.getChildren("link",getAtomNamespace());
+        List<Element> eList = eEntry.getChildren("link",getAtomNamespace());
         entry.setAlternateLinks(parseAlternateLinks(eList));
         entry.setOtherLinks(parseOtherLinks(eList));
 
@@ -322,14 +322,14 @@ public class Atom03Parser extends BaseWireFeedParser {
         if (eList.size()>0) {
             List<Content> content = new ArrayList<Content>();
             for (int i=0;i<eList.size();i++) {
-                content.add(parseContent((Element)eList.get(i)));
+                content.add(parseContent(eList.get(i)));
             }
             entry.setContents(content);
         }
 
         entry.setModules(parseItemModules(eEntry));
 
-        List foreignMarkup = 
+        List<Element> foreignMarkup = 
             extractForeignMarkup(eEntry, entry, getAtomNamespace());
         if (foreignMarkup.size() > 0) {
             entry.setForeignMarkup(foreignMarkup);

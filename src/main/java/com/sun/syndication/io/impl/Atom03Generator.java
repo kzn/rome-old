@@ -94,7 +94,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
     }
 
     protected void addEntries(Feed feed,Element parent) throws FeedException {
-        List items = feed.getEntries();
+        List<Entry> items = feed.getEntries();
         for (int i=0;i<items.size();i++) {
             addEntry((Entry)items.get(i),parent);
         }
@@ -116,7 +116,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
             eFeed.addContent(titleElement);
         }
 
-        List links = feed.getAlternateLinks();
+        List<Link> links = feed.getAlternateLinks();
         for (int i = 0; i < links.size(); i++) {
             eFeed.addContent(generateLinkElement((Link)links.get(i)));
         }
@@ -131,7 +131,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
             eFeed.addContent(authorElement);
         }
 
-        List contributors = feed.getContributors();
+        List<Person> contributors = feed.getContributors();
         for (int i = 0; i < contributors.size(); i++) {
             Element contributorElement = new Element("contributor", getFeedNamespace());
             fillPersonElement(contributorElement, (Person)contributors.get(i));
@@ -175,7 +175,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
             fillContentElement(titleElement, entry.getTitleEx());
             eEntry.addContent(titleElement);
         }
-        List links = entry.getAlternateLinks();
+        List<Link> links = entry.getAlternateLinks();
         for (int i = 0; i < links.size(); i++) {
             eEntry.addContent(generateLinkElement((Link)links.get(i)));
         }
@@ -191,7 +191,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
             eEntry.addContent(authorElement);
         }
 
-        List contributors = entry.getContributors();
+        List<Person> contributors = entry.getContributors();
         for (int i = 0; i < contributors.size(); i++) {
             Element contributorElement = new Element("contributor", getFeedNamespace());
             fillPersonElement(contributorElement, (Person)contributors.get(i));
@@ -225,7 +225,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
             eEntry.addContent(summaryElement);
         }
 
-        List contents = entry.getContents();
+        List<Content> contents = entry.getContents();
         for (int i = 0; i < contents.size(); i++) {
             Element contentElement = new Element("content", getFeedNamespace());
             fillContentElement(contentElement, (Content)contents.get(i));

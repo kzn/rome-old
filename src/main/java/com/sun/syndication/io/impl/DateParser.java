@@ -82,28 +82,28 @@ public class DateParser {
     
     
     
-      /**
-   * The masks used to validate and parse the input to this Atom date.
-   * These are a lot more forgiving than what the Atom spec allows.  
-   * The forms that are invalid according to the spec are indicated.
-   */
-  private static final String[] masks = {
-    "yyyy-MM-dd'T'HH:mm:ss.SSSz",
-    "yyyy-MM-dd't'HH:mm:ss.SSSz",                         // invalid
-    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-    "yyyy-MM-dd't'HH:mm:ss.SSS'z'",                       // invalid
-    "yyyy-MM-dd'T'HH:mm:ssz",
-    "yyyy-MM-dd't'HH:mm:ssz",                             // invalid
-    "yyyy-MM-dd'T'HH:mm:ss'Z'",
-    "yyyy-MM-dd't'HH:mm:ss'z'",                           // invalid
-    "yyyy-MM-dd'T'HH:mmz",                                // invalid
-    "yyyy-MM-dd't'HH:mmz",                                // invalid
-    "yyyy-MM-dd'T'HH:mm'Z'",                              // invalid
-    "yyyy-MM-dd't'HH:mm'z'",                              // invalid
-    "yyyy-MM-dd",
-    "yyyy-MM",
-    "yyyy"
-  };
+// /**
+//   * The masks used to validate and parse the input to this Atom date.
+//   * These are a lot more forgiving than what the Atom spec allows.  
+//   * The forms that are invalid according to the spec are indicated.
+//   */
+//  private static final String[] masks = {
+//    "yyyy-MM-dd'T'HH:mm:ss.SSSz",
+//    "yyyy-MM-dd't'HH:mm:ss.SSSz",                         // invalid
+//    "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+//    "yyyy-MM-dd't'HH:mm:ss.SSS'z'",                       // invalid
+//    "yyyy-MM-dd'T'HH:mm:ssz",
+//    "yyyy-MM-dd't'HH:mm:ssz",                             // invalid
+//    "yyyy-MM-dd'T'HH:mm:ss'Z'",
+//    "yyyy-MM-dd't'HH:mm:ss'z'",                           // invalid
+//    "yyyy-MM-dd'T'HH:mmz",                                // invalid
+//    "yyyy-MM-dd't'HH:mmz",                                // invalid
+//    "yyyy-MM-dd'T'HH:mm'Z'",                              // invalid
+//    "yyyy-MM-dd't'HH:mm'z'",                              // invalid
+//    "yyyy-MM-dd",
+//    "yyyy-MM",
+//    "yyyy"
+//  };
     
     
     

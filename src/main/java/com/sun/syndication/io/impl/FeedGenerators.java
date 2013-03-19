@@ -55,7 +55,7 @@ public class FeedGenerators extends PluginManager {
         return ((WireFeedGenerator)obj).getType();
     }
 
-    public List getSupportedFeedTypes() {
+    public List<String> getSupportedFeedTypes() {
         return getKeys();
     }
 

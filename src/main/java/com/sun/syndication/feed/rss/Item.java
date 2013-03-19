@@ -55,7 +55,7 @@ public class Item implements Cloneable, Serializable, Extendable {
     private Date _pubDate;
     private Date _expirationDate;
     private List<Module> _modules;
-    private List _foreignMarkup;
+    private List<Element> _foreignMarkup;
 
     /**
      * Default constructor. All properties are set to <b>null</b>.

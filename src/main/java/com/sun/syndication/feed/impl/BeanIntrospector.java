@@ -33,9 +33,9 @@ import java.util.*;
  */
 public class BeanIntrospector {
 
-    private static final Map<Class, PropertyDescriptor[]> _introspected = new HashMap<Class, PropertyDescriptor[]>();
+    private static final Map<Class<?>, PropertyDescriptor[]> _introspected = new HashMap<Class<?>, PropertyDescriptor[]>();
 
-    public static synchronized PropertyDescriptor[] getPropertyDescriptors(Class klass) throws IntrospectionException {
+    public static synchronized PropertyDescriptor[] getPropertyDescriptors(Class<?> klass) throws IntrospectionException {
         PropertyDescriptor[] descriptors = _introspected.get(klass);
         if (descriptors==null) {
             descriptors = getPDs(klass);
@@ -44,7 +44,7 @@ public class BeanIntrospector {
         return descriptors;
     }
 
-    private static PropertyDescriptor[] getPDs(Class klass) throws IntrospectionException {
+    private static PropertyDescriptor[] getPDs(Class<?> klass) throws IntrospectionException {
         Method[] methods = klass.getMethods();
         Map<String, PropertyDescriptor> getters = getPDs(methods,false);
         Map<String, PropertyDescriptor> setters = getPDs(methods,true);

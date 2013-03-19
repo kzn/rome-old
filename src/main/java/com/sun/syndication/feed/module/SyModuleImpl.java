@@ -115,7 +115,7 @@ public class SyModuleImpl extends ModuleImpl implements SyModule {
         _updateBase = updateBase;
     }
 
-    public Class getInterface() {
+    public Class<?> getInterface() {
         return SyModule.class;
     }
 
@@ -126,12 +126,12 @@ public class SyModuleImpl extends ModuleImpl implements SyModule {
     private static final CopyFromHelper COPY_FROM_HELPER;
 
     static {
-        Map<String, Class<?>> basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap<String, Class<?>>();
         basePropInterfaceMap.put("updatePeriod",String.class);
         basePropInterfaceMap.put("updateFrequency",Integer.TYPE);
         basePropInterfaceMap.put("updateBase",Date.class);
 
-        Map<Class<?>, Class<?>> basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class<?>, Class<?>> basePropClassImplMap = new HashMap<Class<?>, Class<?>>();
 
         COPY_FROM_HELPER = new CopyFromHelper(SyModule.class,basePropInterfaceMap,basePropClassImplMap);
     }

@@ -91,7 +91,7 @@ public class RSS092Parser extends RSS091UserlandParser {
 
         // 0.92 allows one enclosure occurrence, 0.93 multiple
         // just saving to write some code.
-        List eEnclosures = eItem.getChildren("enclosure");//getRSSNamespace()); DONT KNOW WHY DOESN'T WORK
+        List<Element> eEnclosures = eItem.getChildren("enclosure");//getRSSNamespace()); DONT KNOW WHY DOESN'T WORK
         if (eEnclosures.size()>0) {
             List<Enclosure> enclosures = new ArrayList<Enclosure>();
             for (int i=0;i<eEnclosures.size();i++) {
@@ -114,13 +114,13 @@ public class RSS092Parser extends RSS091UserlandParser {
             item.setEnclosures(enclosures);
         }
 
-        List eCats = eItem.getChildren("category");//getRSSNamespace()); DONT KNOW WHY DOESN'T WORK
+        List<Element> eCats = eItem.getChildren("category");//getRSSNamespace()); DONT KNOW WHY DOESN'T WORK
         item.setCategories(parseCategories(eCats));
 
         return item;
     }
 
-    protected List<Category> parseCategories(List eCats) {
+    protected List<Category> parseCategories(List<Element> eCats) {
         List<Category> cats = null;
         if (eCats.size()>0) {
             cats = new ArrayList<Category>();

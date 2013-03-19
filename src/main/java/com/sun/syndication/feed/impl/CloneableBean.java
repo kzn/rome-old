@@ -38,7 +38,7 @@ public class CloneableBean implements Serializable, Cloneable {
     private static final Object[] NO_PARAMS = new Object[0];
 
     private Object _obj;
-    private Set _ignoreProperties;
+    private Set<String> _ignoreProperties;
 
     /**
      * Default constructor.
@@ -92,9 +92,9 @@ public class CloneableBean implements Serializable, Cloneable {
      * @param ignoreProperties properties to ignore when cloning.
      *
      */
-    public CloneableBean(Object obj,Set ignoreProperties) {
+    public CloneableBean(Object obj,Set<String> ignoreProperties) {
         _obj = obj;
-        _ignoreProperties = (ignoreProperties!=null) ? ignoreProperties : Collections.EMPTY_SET;
+        _ignoreProperties = (ignoreProperties!=null) ? ignoreProperties : new HashSet<String>();
     }
 
     /**
@@ -157,7 +157,7 @@ public class CloneableBean implements Serializable, Cloneable {
 
     private Object doClone(Object value) throws Exception {
         if (value!=null) {
-            Class vClass = value.getClass();
+            Class<? extends Object> vClass = value.getClass();
             if (vClass.isArray()) {
                 value = cloneArray(value);
             }
@@ -253,7 +253,7 @@ public class CloneableBean implements Serializable, Cloneable {
         CONSTRUCTOR_BASIC_TYPES.put(String.class,new Class[]{String.class});
     }
 
-    private boolean isBasicType(Class vClass) {
+    private boolean isBasicType(Class<? extends Object> vClass) {
         return BASIC_TYPES.contains(vClass);
     }
 

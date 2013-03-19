@@ -239,8 +239,8 @@ public class Atom03Parser extends BaseWireFeedParser {
         else
         if (mode.equals(Content.XML)) {
             XMLOutputter outputter = new XMLOutputter();
-            List eContent = e.getContent();
-            Iterator i = eContent.iterator();
+            List<org.jdom2.Content> eContent = e.getContent();
+            Iterator<org.jdom2.Content> i = eContent.iterator();
             while (i.hasNext()) {
                 org.jdom2.Content c = (org.jdom2.Content) i.next();
                 if (c instanceof Element) {

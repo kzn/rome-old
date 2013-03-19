@@ -77,7 +77,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      * (the are ignored during cloning, check CloneableBean for details).
      *
      */
-    protected SyndEntryImpl(Class beanClass,Set convenienceProperties) {
+    protected SyndEntryImpl(Class<?> beanClass,Set<String> convenienceProperties) {
         _objBean = new ObjectBean(beanClass,this,convenienceProperties);
     }
 

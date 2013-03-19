@@ -129,7 +129,7 @@ public class DCSubjectImpl implements Cloneable,Serializable, DCSubject {
         _value = value;
     }
 
-    public Class getInterface() {
+    public Class<?> getInterface() {
         return DCSubject.class;
     }
 

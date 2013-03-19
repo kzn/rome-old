@@ -30,9 +30,9 @@ import java.util.*;
  */
 public abstract class PluginManager {
     private String[] _propertyValues;
-    private Map _pluginsMap;
+    private Map<String, Object> _pluginsMap;
     private List<Object> _pluginsList;
-    private List _keys;
+    private List<String> _keys;
     private WireFeedParser _parentParser;
     private WireFeedGenerator _parentGenerator;
 
@@ -55,12 +55,12 @@ public abstract class PluginManager {
         loadPlugins();
         _pluginsMap = Collections.unmodifiableMap(_pluginsMap);
         _pluginsList = Collections.unmodifiableList(_pluginsList);
-        _keys = Collections.unmodifiableList(new ArrayList(_pluginsMap.keySet()));
+        _keys = Collections.unmodifiableList(new ArrayList<String>(_pluginsMap.keySet()));
     }
 
     protected abstract String getKey(Object obj);
 
-    protected List getKeys() {
+    protected List<String> getKeys() {
         return _keys;
     }
 
@@ -68,7 +68,7 @@ public abstract class PluginManager {
         return _pluginsList;
     }
 
-    protected Map getPluginMap() {
+    protected Map<String, Object> getPluginMap() {
         return _pluginsMap;
     }
 
@@ -81,7 +81,7 @@ public abstract class PluginManager {
     private void loadPlugins() {
         List<Object> finalPluginsList = new ArrayList<Object>();
         _pluginsList = new ArrayList<Object>();
-        _pluginsMap = new HashMap();
+        _pluginsMap = new HashMap<String, Object>();
         String className = null;
         try {
             Class[] classes = getClasses();

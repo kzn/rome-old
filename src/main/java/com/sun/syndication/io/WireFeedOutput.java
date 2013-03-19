@@ -16,21 +16,22 @@
  */
 package com.sun.syndication.io;
 
-import com.sun.syndication.feed.WireFeed;
-import com.sun.syndication.io.impl.FeedGenerators;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.List;
+import java.util.Map;
+import java.util.WeakHashMap;
+
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.output.DOMOutputter;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import java.io.IOException;
-import java.io.Writer;
-import java.io.File;
-import java.io.FileWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
+import com.sun.syndication.feed.WireFeed;
+import com.sun.syndication.io.impl.FeedGenerators;
 
 /**
  * Generates an XML document (String, File, OutputStream, Writer, W3C DOM document or JDOM document)
@@ -64,7 +65,7 @@ public class WireFeedOutput {
      * @return a list of String elements with the supported output feed types.
      *
      */
-    public static List getSupportedFeedTypes() {
+    public static List<String> getSupportedFeedTypes() {
         return getFeedGenerators().getSupportedFeedTypes();
     }
 

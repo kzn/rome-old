@@ -48,7 +48,7 @@ public class Converters extends PluginManager {
         return ((Converter)obj).getType();
     }
 
-    public List getSupportedFeedTypes() {
+    public List<String> getSupportedFeedTypes() {
         return getKeys();
     }
 

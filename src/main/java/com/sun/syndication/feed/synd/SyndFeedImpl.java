@@ -84,7 +84,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * <p>
      * @return the real feed type supported.
      */
-    public List getSupportedFeedTypes() {
+    public List<String> getSupportedFeedTypes() {
         return CONVERTERS.getSupportedFeedTypes();
     }
 
@@ -97,7 +97,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * (the are ignored during cloning, check CloneableBean for details).
      *
      */
-    protected SyndFeedImpl(Class beanClass,Set convenienceProperties) {
+    protected SyndFeedImpl(Class<?> beanClass,Set<String> convenienceProperties) {
         _objBean = new ObjectBean(beanClass,this,convenienceProperties);
     }
 
@@ -568,8 +568,8 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *         an empty list if none.
      *
      */
-    public List getEntries() {
-        return (_entries==null) ? (_entries=new ArrayList()) : _entries;
+    public List<SyndEntry> getEntries() {
+        return (_entries==null) ? (_entries=new ArrayList<SyndEntry>()) : _entries;
     }
 
     /**
@@ -579,7 +579,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setEntries(List entries) {
+    public void setEntries(List<SyndEntry> entries) {
         _entries = entries;
     }
 
@@ -614,9 +614,9 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *         an empty list if none.
      *
      */
-    public List getModules() {
+    public List<Module> getModules() {
         if  (_modules==null) {
-            _modules=new ArrayList();
+            _modules=new ArrayList<Module>();
         }
         if (ModuleUtils.getModule(_modules,DCModule.URI)==null) {
             _modules.add(new DCModuleImpl());
@@ -632,7 +632,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setModules(List modules) {
+    public void setModules(List<Module> modules) {
         _modules = modules;
     }
 
@@ -763,7 +763,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * @param foreignMarkup Opaque object to discourage use
      *
      */
-    public void setForeignMarkup(Object foreignMarkup) {
+    public void setForeignMarkup(List<Element> foreignMarkup) {
         _foreignMarkup = (List<Element>)foreignMarkup;
     }
 

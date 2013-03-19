@@ -36,7 +36,7 @@ public class ModuleParsers extends PluginManager {
         return ((ModuleParser)obj).getNamespaceUri();
     }
 
-    public List getModuleNamespaces() {
+    public List<String> getModuleNamespaces() {
         return getKeys();
     }
 

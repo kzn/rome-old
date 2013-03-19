@@ -53,7 +53,7 @@ public class FeedParsers extends PluginManager {
         super(FEED_PARSERS_KEY);
     }
 
-    public List getSupportedFeedTypes() {
+    public List<String> getSupportedFeedTypes() {
         return getKeys();
     }
 

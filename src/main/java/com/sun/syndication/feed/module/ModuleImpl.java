@@ -37,7 +37,7 @@ public abstract class ModuleImpl implements Cloneable,Serializable,Module {
      * @param uri URI of the module.
      *
      */
-    protected ModuleImpl(Class beanClass,String uri) {
+    protected ModuleImpl(Class<?> beanClass,String uri) {
         _objBean = new ObjectBean(beanClass,this);
         _uri = uri;
     }

@@ -153,7 +153,7 @@ public class SyndContentImpl implements Serializable,SyndContent {
     }
 
 
-    public Class getInterface() {
+    public Class<?> getInterface() {
         return SyndContent.class;
     }
 

@@ -43,12 +43,12 @@ public class ModuleGenerators extends PluginManager {
         return ((ModuleGenerator)obj).getNamespaceUri();
     }
 
-    public List getModuleNamespaces() {
+    public List<String> getModuleNamespaces() {
         return getKeys();
     }
 
     public void generateModules(List<Module> modules, Element element) {
-        Map generators = getPluginMap();
+        Map<String, Object> generators = getPluginMap();
         for (int i = 0; i < modules.size(); i++) {
             Module module = modules.get(i);
             String namespaceUri = module.getUri();
@@ -62,7 +62,7 @@ public class ModuleGenerators extends PluginManager {
     public Set<Namespace> getAllNamespaces() {
         if (_allNamespaces==null) {
             _allNamespaces = new HashSet<Namespace>();
-            List mUris = getModuleNamespaces();
+            List<String> mUris = getModuleNamespaces();
             for (int i=0;i<mUris.size();i++) {
                 ModuleGenerator mGen = getGenerator((String)mUris.get(i));
                 _allNamespaces.addAll(mGen.getNamespaces());

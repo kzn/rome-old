@@ -41,7 +41,7 @@ public interface SyndFeed extends Cloneable, CopyFrom, Extendable {
      * <p>
      * @return the real feed type supported.
      */
-    List<SyndFeedImpl> getSupportedFeedTypes();
+    List<String> getSupportedFeedTypes();
 
     /**
      * Creates a real feed containing the information of the SyndFeedImpl.
@@ -504,7 +504,7 @@ public interface SyndFeed extends Cloneable, CopyFrom, Extendable {
      * @param foreignMarkup Opaque object to discourage use
      *
      */
-    public void setForeignMarkup(Object foreignMarkup);
+    public void setForeignMarkup(List<Element> foreignMarkup);
     
     /**
      * Creates a deep clone of the object.

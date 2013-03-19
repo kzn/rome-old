@@ -16,12 +16,12 @@
  */
 package com.sun.syndication.io;
 
-import com.sun.syndication.feed.module.Module;
-import com.sun.syndication.feed.WireFeed;
+import java.util.Set;
+
 import org.jdom2.Element;
 import org.jdom2.Namespace;
 
-import java.util.Set;
+import com.sun.syndication.feed.module.Module;
 
 /**
  * Injects module metadata into a XML node (JDOM element).

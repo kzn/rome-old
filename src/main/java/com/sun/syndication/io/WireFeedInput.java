@@ -89,7 +89,7 @@ public class WireFeedInput {
      * @return a list of String elements with the supported input feed types.
      *
      */
-    public static List getSupportedFeedTypes() {
+    public static List<String> getSupportedFeedTypes() {
         return getFeedParsers().getSupportedFeedTypes();
     }
 

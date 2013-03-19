@@ -35,11 +35,11 @@ import java.io.Serializable;
  *
  */
 public class ToStringBean implements Serializable {
-    private static final ThreadLocal PREFIX_TL = new ThreadLocal() {
-        public Object get() {
-            Object o = super.get();
+    private static final ThreadLocal<Stack<String[]>> PREFIX_TL = new ThreadLocal<Stack<String[]>>() {
+        public Stack<String[]> get() {
+        	Stack<String[]> o = super.get();
             if (o==null) {
-                o = new Stack();
+                o = new Stack<String[]>();
                 set(o);
             }
             return o;
@@ -48,7 +48,7 @@ public class ToStringBean implements Serializable {
 
     private static final Object[] NO_PARAMS = new Object[0];
 
-    private Class _beanClass;
+    private Class<?> _beanClass;
     private Object _obj;
 
     /**
@@ -59,7 +59,7 @@ public class ToStringBean implements Serializable {
      * @param beanClass indicates the class to scan for properties, normally an interface class.
      *
      */
-    protected ToStringBean(Class beanClass) {
+    protected ToStringBean(Class<?> beanClass) {
         _beanClass = beanClass;
         _obj = this;
     }
@@ -102,7 +102,7 @@ public class ToStringBean implements Serializable {
      *
      */
     public String toString() {
-        Stack stack = (Stack) PREFIX_TL.get();
+        Stack<String[]> stack = (Stack<String[]>) PREFIX_TL.get();
         String[] tsInfo = (String[]) ((stack.isEmpty()) ? null : stack.peek());
         String prefix;
         if (tsInfo==null) {

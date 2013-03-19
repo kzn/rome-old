@@ -117,12 +117,12 @@ public class Atom10Parser extends BaseWireFeedParser {
         
         feed.setModules(parseFeedModules(eFeed));
 
-        List eList = eFeed.getChildren("entry",getAtomNamespace());
+        List<Element> eList = eFeed.getChildren("entry",getAtomNamespace());
         if (eList.size()>0) {
             feed.setEntries(parseEntries(feed, baseURI, eList));
         }
 
-        List foreignMarkup =
+        List<Element> foreignMarkup =
             extractForeignMarkup(eFeed, feed, getAtomNamespace());
         if (foreignMarkup.size() > 0) {
             feed.setForeignMarkup(foreignMarkup);
@@ -142,11 +142,11 @@ public class Atom10Parser extends BaseWireFeedParser {
             feed.setTitleEx(c);
         }
         
-        List eList = eFeed.getChildren("link",getAtomNamespace());
+        List<Element> eList = eFeed.getChildren("link",getAtomNamespace());
         feed.setAlternateLinks(parseAlternateLinks(feed, null, baseURI, eList));
         feed.setOtherLinks(parseOtherLinks(feed, null, baseURI, eList));
         
-        List cList = eFeed.getChildren("category",getAtomNamespace());
+        List<Element> cList = eFeed.getChildren("category",getAtomNamespace());
         feed.setCategories(parseCategories(baseURI, cList));
         
         eList = eFeed.getChildren("author", getAtomNamespace());
@@ -246,7 +246,7 @@ public class Atom10Parser extends BaseWireFeedParser {
     }
     
     // List(Elements) -> List(Link)
-    private List<Link> parseAlternateLinks(Feed feed, Entry entry, String baseURI, List eLinks) {
+    private List<Link> parseAlternateLinks(Feed feed, Entry entry, String baseURI, List<Element> eLinks) {
         List<Link> links = new ArrayList<Link>();
         for (int i=0;i<eLinks.size();i++) {
             Element eLink = (Element) eLinks.get(i);
@@ -260,7 +260,7 @@ public class Atom10Parser extends BaseWireFeedParser {
         return (links.size()>0) ? links : null;
     }
     
-    private List<Link> parseOtherLinks(Feed feed, Entry entry, String baseURI, List eLinks) {
+    private List<Link> parseOtherLinks(Feed feed, Entry entry, String baseURI, List<Element> eLinks) {
         List<Link> links = new ArrayList<Link>();
         for (int i=0;i<eLinks.size();i++) {
             Element eLink = (Element) eLinks.get(i);
@@ -294,7 +294,7 @@ public class Atom10Parser extends BaseWireFeedParser {
     }
     
     // List(Elements) -> List(Persons)
-    private List<Person> parsePersons(String baseURI, List ePersons) {
+    private List<Person> parsePersons(String baseURI, List<Element> ePersons) {
         List<Person> persons = new ArrayList<Person>();
         for (int i=0;i<ePersons.size();i++) {
             persons.add(parsePerson(baseURI, (Element)ePersons.get(i)));
@@ -320,10 +320,10 @@ public class Atom10Parser extends BaseWireFeedParser {
         if (type.equals(Content.XHTML) || (type.indexOf("/xml")) != -1 || (type.indexOf("+xml")) != -1) {
             // XHTML content needs special handling
             XMLOutputter outputter = new XMLOutputter();
-            List eContent = e.getContent();
-            Iterator i = eContent.iterator();
+            List<org.jdom2.Content> eContent = e.getContent();
+            Iterator<org.jdom2.Content> i = eContent.iterator();
             while (i.hasNext()) {
-                org.jdom2.Content c = (org.jdom2.Content) i.next();
+                org.jdom2.Content c = i.next();
                 if (c instanceof Element) {
                     Element eC = (Element) c;
                     if (eC.getNamespace().equals(getAtomNamespace())) {
@@ -340,7 +340,7 @@ public class Atom10Parser extends BaseWireFeedParser {
     }
     
     // List(Elements) -> List(Entries)
-    protected List<Entry> parseEntries(Feed feed, String baseURI, List eEntries) {
+    protected List<Entry> parseEntries(Feed feed, String baseURI, List<Element> eEntries) {
         List<Entry> entries = new ArrayList<Entry>();
         for (int i=0;i<eEntries.size();i++) {
             entries.add(parseEntry(feed, (Element)eEntries.get(i), baseURI));
@@ -364,7 +364,7 @@ public class Atom10Parser extends BaseWireFeedParser {
             entry.setTitleEx(c);
         }
         
-        List eList = eEntry.getChildren("link",getAtomNamespace());
+        List<Element> eList = eEntry.getChildren("link",getAtomNamespace());
         entry.setAlternateLinks(parseAlternateLinks(feed, entry, baseURI, eList));
         entry.setOtherLinks(parseOtherLinks(feed, entry, baseURI, eList));
         
@@ -410,7 +410,7 @@ public class Atom10Parser extends BaseWireFeedParser {
             entry.setRights(e.getText());
         }
         
-        List cList = eEntry.getChildren("category",getAtomNamespace());
+        List<Element> cList = eEntry.getChildren("category",getAtomNamespace());
         entry.setCategories(parseCategories(baseURI, cList));
         
         // TODO: SHOULD handle Atom entry source element
@@ -421,7 +421,7 @@ public class Atom10Parser extends BaseWireFeedParser {
         
         entry.setModules(parseItemModules(eEntry));
         
-        List foreignMarkup =
+        List<Element> foreignMarkup =
                 extractForeignMarkup(eEntry, entry, getAtomNamespace());
         if (foreignMarkup.size() > 0) {
             entry.setForeignMarkup(foreignMarkup);
@@ -429,7 +429,7 @@ public class Atom10Parser extends BaseWireFeedParser {
         return entry;
     }
     
-    private List<Category> parseCategories(String baseURI, List eCategories) {
+    private List<Category> parseCategories(String baseURI, List<Element> eCategories) {
         List<Category> cats = new ArrayList<Category>();
         for (int i=0;i<eCategories.size();i++) {
             Element eCategory = (Element) eCategories.get(i);
@@ -561,10 +561,10 @@ public class Atom10Parser extends BaseWireFeedParser {
      */
     private  String findAtomLink(Element parent, String rel) {
         String ret = null;
-        List linksList = parent.getChildren("link", ATOM_10_NS);
+        List<Element> linksList = parent.getChildren("link", ATOM_10_NS);
         if (linksList != null) {
-            for (Iterator links = linksList.iterator(); links.hasNext(); ) {
-                Element link = (Element)links.next();
+            for (Iterator<Element> links = linksList.iterator(); links.hasNext(); ) {
+                Element link = links.next();
                 Attribute relAtt = getAttribute(link, "rel");
                 Attribute hrefAtt = getAttribute(link, "href");
                 if (   (relAtt == null && "alternate".equals(rel)) 

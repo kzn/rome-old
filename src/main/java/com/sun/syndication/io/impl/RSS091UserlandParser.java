@@ -183,15 +183,15 @@ public class RSS091UserlandParser extends RSS090Parser {
 
 
     /**
-     * It looks for the 'item' elements under the 'channel' elemment.
+     * It looks for the 'item' elements under the 'channel' element.
      */
-    protected List getItems(Element rssRoot) {
+    protected List<Element> getItems(Element rssRoot) {
         Element eChannel = rssRoot.getChild("channel",getRSSNamespace());
-        return (eChannel!=null) ? eChannel.getChildren("item",getRSSNamespace()) : Collections.EMPTY_LIST;
+        return (eChannel!=null) ? eChannel.getChildren("item",getRSSNamespace()) : new ArrayList<Element>();
     }
 
     /**
-     * It looks for the 'image' elements under the 'channel' elemment.
+     * It looks for the 'image' elements under the 'channel' element.
      */
     protected Element getImage(Element rssRoot) {
         Element eChannel = rssRoot.getChild("channel",getRSSNamespace());

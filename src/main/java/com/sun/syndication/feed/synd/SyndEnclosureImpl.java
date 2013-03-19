@@ -130,7 +130,7 @@ public class SyndEnclosureImpl implements Serializable,SyndEnclosure {
         _type = type;
     }
 
-    public Class getInterface() {
+    public Class<?> getInterface() {
         return SyndEnclosure.class;
     }
 
@@ -146,7 +146,7 @@ public class SyndEnclosureImpl implements Serializable,SyndEnclosure {
         basePropInterfaceMap.put("type",String.class);
         basePropInterfaceMap.put("length",Long.TYPE);
 
-        Map<Class<?>, Class<?>> basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class<?>, Class<?>> basePropClassImplMap = new HashMap<Class<?>, Class<?>>();
 
         COPY_FROM_HELPER = new CopyFromHelper(SyndEnclosure.class,basePropInterfaceMap,basePropClassImplMap);
     }

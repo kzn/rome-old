@@ -124,18 +124,18 @@ public class RSS091UserlandGenerator extends RSS090Generator {
             eChannel.addContent(generateSimpleElement("webMaster", webMaster));
         }
 
-        List skipHours = channel.getSkipHours();
+        List<Integer> skipHours = channel.getSkipHours();
         if (skipHours != null && skipHours.size()>0) {
             eChannel.addContent(generateSkipHoursElement(skipHours));
         }
 
-        List skipDays = channel.getSkipDays();
+        List<String> skipDays = channel.getSkipDays();
         if (skipDays != null && skipDays.size()>0) {
             eChannel.addContent(generateSkipDaysElement(skipDays));
         }
     }
 
-    protected Element generateSkipHoursElement(List hours) {
+    protected Element generateSkipHoursElement(List<Integer> hours) {
         Element skipHoursElement = new Element("skipHours",getFeedNamespace());
         for (int i = 0; i < hours.size(); i++) {
             skipHoursElement.addContent(generateSimpleElement("hour", hours.get(i).toString()));
@@ -143,7 +143,7 @@ public class RSS091UserlandGenerator extends RSS090Generator {
         return skipHoursElement;
     }
 
-    protected Element generateSkipDaysElement(List days) {
+    protected Element generateSkipDaysElement(List<String> days) {
         Element skipDaysElement = new Element("skipDays");
         for (int i = 0; i < days.size(); i++) {
             skipDaysElement.addContent(generateSimpleElement("day", days.get(i).toString()));

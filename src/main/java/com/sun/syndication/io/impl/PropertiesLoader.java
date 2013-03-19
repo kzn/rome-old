@@ -81,7 +81,7 @@ public class PropertiesLoader {
             throw ex;
         }
 
-        Enumeration urls = classLoader.getResources(extraFileLocation);
+        Enumeration<URL> urls = classLoader.getResources(extraFileLocation);
         while (urls.hasMoreElements()) {
             URL url = (URL) urls.nextElement();
             Properties p = new Properties();

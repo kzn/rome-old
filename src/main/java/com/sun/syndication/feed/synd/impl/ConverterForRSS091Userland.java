@@ -131,7 +131,7 @@ public class ConverterForRSS091Userland extends ConverterForRSS090 {
         if (sContent!=null) {
             item.setDescription(createItemDescription(sContent));
         }
-        List contents = sEntry.getContents();
+        List<SyndContent> contents = sEntry.getContents();
         if (contents != null && contents.size() > 0) {
             SyndContent syndContent = (SyndContent)contents.get(0);
             Content cont = new Content();

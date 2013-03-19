@@ -41,7 +41,7 @@ import java.util.List;
 import java.util.Date;
 import java.util.Iterator;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  */

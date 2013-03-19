@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Bean for items of RSS feeds.

@@ -27,7 +27,7 @@ import java.util.List;
 import java.io.Serializable;
 import java.util.Iterator;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Bean for entry elements of Atom feeds.

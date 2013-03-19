@@ -24,7 +24,7 @@ import com.sun.syndication.feed.module.Module;
 import java.util.Date;
 import java.util.List;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Bean interface for all types of feeds.

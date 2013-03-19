@@ -18,7 +18,7 @@ package com.sun.syndication.io.impl;
 
 import com.sun.syndication.feed.rss.Enclosure;
 import com.sun.syndication.feed.rss.Item;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import java.util.Date;
 import java.util.List;

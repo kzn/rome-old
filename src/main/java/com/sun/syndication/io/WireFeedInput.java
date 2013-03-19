@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.jdom.Document;
-import org.jdom.JDOMException;
-import org.jdom.input.DOMBuilder;
-import org.jdom.input.JDOMParseException;
+import org.jdom2.Document;
+import org.jdom2.JDOMException;
+import org.jdom2.input.DOMBuilder;
+import org.jdom2.input.JDOMParseException;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXNotRecognizedException;

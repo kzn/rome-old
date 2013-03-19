@@ -25,7 +25,7 @@ import com.sun.syndication.feed.impl.CopyFromHelper;
 import java.util.*;
 import java.io.Serializable; 
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Bean for entries of SyndFeedImpl feeds.

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Parent class of the RSS (Channel) and Atom (Feed) feed beans.

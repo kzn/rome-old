@@ -20,11 +20,11 @@ import java.io.StringReader;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jdom.Attribute;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.Namespace;
-import org.jdom.input.SAXBuilder;
+import org.jdom2.Attribute;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.Namespace;
+import org.jdom2.input.SAXBuilder;
 
 import com.sun.syndication.feed.WireFeed;
 import com.sun.syndication.feed.atom.Category;
@@ -39,7 +39,7 @@ import com.sun.syndication.io.WireFeedOutput;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.output.XMLOutputter;
 
 /**
  * Feed Generator for Atom
@@ -409,7 +409,7 @@ public class Atom10Generator extends BaseWireFeedGenerator {
                 catch (Exception ex) {
                     throw new FeedException("Invalid XML",ex);
                 }
-                List<Element> children = tmpDoc.getRootElement().removeContent();
+                List<Element> children = tmpDoc.getRootElement().getChildren();
                 contentElement.addContent(children);
             } else { 
                 // must be type html, text or some other non-XML format

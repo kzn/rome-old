@@ -19,7 +19,7 @@ package com.sun.syndication.feed.synd;
 import java.util.Date;
 import java.util.List;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.sun.syndication.feed.CopyFrom;
 import com.sun.syndication.feed.module.Extendable;

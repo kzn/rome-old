@@ -27,7 +27,7 @@ import com.sun.syndication.feed.synd.impl.URINormalizer;
 import java.util.*;
 import java.io.Serializable;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 /**
  * Bean for all types of feeds.

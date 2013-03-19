@@ -141,12 +141,12 @@ public class SyndEnclosureImpl implements Serializable,SyndEnclosure {
     private static final CopyFromHelper COPY_FROM_HELPER;
 
     static {
-        Map basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap<String, Class<?>>();
         basePropInterfaceMap.put("url",String.class);
         basePropInterfaceMap.put("type",String.class);
         basePropInterfaceMap.put("length",Long.TYPE);
 
-        Map<Class, Class> basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class<?>, Class<?>> basePropClassImplMap = Collections.EMPTY_MAP;
 
         COPY_FROM_HELPER = new CopyFromHelper(SyndEnclosure.class,basePropInterfaceMap,basePropClassImplMap);
     }

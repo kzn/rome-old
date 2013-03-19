@@ -815,7 +815,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
     private static final CopyFromHelper COPY_FROM_HELPER;
     
     static {
-        Map basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap<String, Class<?>>();
         basePropInterfaceMap.put("titles", String.class);
         basePropInterfaceMap.put("creators", String.class);
         basePropInterfaceMap.put("subjects", DCSubject.class);
@@ -832,7 +832,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
         basePropInterfaceMap.put("coverages", String.class);
         basePropInterfaceMap.put("rightsList", String.class);
 
-        Map<Class, Class> basePropClassImplMap = new HashMap<Class, Class>();
+        Map<Class<?>, Class<?>> basePropClassImplMap = new HashMap<Class<?>, Class<?>>();
         basePropClassImplMap.put(DCSubject.class,DCSubjectImpl.class);
 
         COPY_FROM_HELPER = new CopyFromHelper(DCModule.class,basePropInterfaceMap,basePropClassImplMap);

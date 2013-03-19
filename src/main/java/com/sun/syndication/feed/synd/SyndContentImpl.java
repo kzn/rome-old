@@ -164,11 +164,11 @@ public class SyndContentImpl implements Serializable,SyndContent {
     private static final CopyFromHelper COPY_FROM_HELPER;
 
     static {
-        Map basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap();
         basePropInterfaceMap.put("type",String.class);
         basePropInterfaceMap.put("value",String.class);
 
-        Map<Class, Class> basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class<?>, Class<?>> basePropClassImplMap = Collections.EMPTY_MAP;
 
         COPY_FROM_HELPER = new CopyFromHelper(SyndContent.class,basePropInterfaceMap,basePropClassImplMap);
     }

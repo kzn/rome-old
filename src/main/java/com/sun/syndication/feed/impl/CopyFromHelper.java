@@ -30,11 +30,11 @@ import java.util.*;
 public class CopyFromHelper {
     private static final Object[] NO_PARAMS = new Object[0];
 
-    private Class _beanInterfaceClass;
+    private Class<?> _beanInterfaceClass;
     private Map<String, Class<?>> _baseInterfaceMap; //ENTRIES(propertyName,interface.class)
-    private Map<Class, Class> _baseImplMap;      //ENTRIES(interface.class,implementation.class)
+    private Map<Class<?>, Class<?>> _baseImplMap;      //ENTRIES(interface.class,implementation.class)
 
-    public CopyFromHelper(Class beanInterfaceClass,Map basePropInterfaceMap,Map<Class, Class> basePropClassImplMap) {
+    public CopyFromHelper(Class<?> beanInterfaceClass, Map<String, Class<?>> basePropInterfaceMap,Map<Class<?>, Class<?>> basePropClassImplMap) {
         _beanInterfaceClass = beanInterfaceClass;
         _baseInterfaceMap = basePropInterfaceMap;
         _baseImplMap = basePropClassImplMap;
@@ -124,10 +124,10 @@ public class CopyFromHelper {
         return newArray;
     }
 
-    private Object doCopyCollection(Collection collection,Class baseInterface) throws Exception {
+    private Object doCopyCollection(Collection<?> collection,Class<?> baseInterface) throws Exception {
         // expecting SETs or LISTs only, going default implementation of them
-        Collection<Object> newColl = (collection instanceof Set) ? (Collection)new HashSet() : (Collection)new ArrayList();
-        Iterator i = collection.iterator();
+        Collection<Object> newColl = (collection instanceof Set) ? (Collection<Object>)new HashSet<Object>() : (Collection<Object>)new ArrayList<Object>();
+        Iterator<?> i = collection.iterator();
         while (i.hasNext()) {
             Object element = doCopy(i.next(),baseInterface);
             newColl.add(element);
@@ -135,7 +135,7 @@ public class CopyFromHelper {
         return newColl;
     }
 
-    private Object doCopyMap(Map map,Class baseInterface) throws Exception {
+    private Object doCopyMap(Map<?, ?> map,Class<?> baseInterface) throws Exception {
         Map<Object, Object> newMap = new HashMap<Object, Object>();
         Iterator entries = map.entrySet().iterator();
         while (entries.hasNext()) {
@@ -147,7 +147,7 @@ public class CopyFromHelper {
         return newMap;
     }
 
-    private static final Set<Class> BASIC_TYPES = new HashSet<Class>();
+    private static final Set<Class<?>> BASIC_TYPES = new HashSet<Class<?>>();
 
     static {
         BASIC_TYPES.add(Boolean.class);
@@ -162,7 +162,7 @@ public class CopyFromHelper {
         BASIC_TYPES.add(Date.class);
     }
 
-    private boolean isBasicType(Class vClass) {
+    private boolean isBasicType(Class<?> vClass) {
         return BASIC_TYPES.contains(vClass);
     }
 

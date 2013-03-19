@@ -40,12 +40,12 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
     private Date _updatedDate;
     private SyndContent _title;       
     private SyndContent _description;
-    private List _links;
-    private List _contents; // deprecated by Atom 1.0
-    private List _modules;
-    private List _enclosures;
-    private List _authors;
-    private List _contributors;
+    private List<SyndLink> _links;
+    private List<SyndContent> _contents; // deprecated by Atom 1.0
+    private List<Module> _modules;
+    private List<SyndEnclosure> _enclosures;
+    private List<SyndPerson> _authors;
+    private List<SyndPerson> _contributors;
     private SyndFeed _source;
     private List<Element> _foreignMarkup;
     private Object wireEntry; // com.sun.syndication.feed.atom.Entry or com.sun.syndication.feed.rss.Item
@@ -268,8 +268,8 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *         an empty list if none.
      *
      */
-    public List getContents() {
-        return (_contents==null) ? (_contents=new ArrayList()) : _contents;
+    public List<SyndContent> getContents() {
+        return (_contents==null) ? (_contents=new ArrayList<SyndContent>()) : _contents;
     }
 
     /**
@@ -279,7 +279,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setContents(List contents) {
+    public void setContents(List<SyndContent> contents) {
         _contents = contents;
     }
 
@@ -290,8 +290,8 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *         an empty list if none.
      *
      */
-    public List getEnclosures() {
-        return (_enclosures==null) ? (_enclosures=new ArrayList()) : _enclosures;
+    public List<SyndEnclosure> getEnclosures() {
+        return (_enclosures==null) ? (_enclosures=new ArrayList<SyndEnclosure>()) : _enclosures;
     }
 
     /**
@@ -301,7 +301,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setEnclosures(List enclosures) {
+    public void setEnclosures(List<SyndEnclosure> enclosures) {
         _enclosures = enclosures;
     }
 
@@ -337,7 +337,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *         an empty list if none.
      *
      */
-    public List getCategories() {
+    public List<SyndCategory> getCategories() {
        return _categories;
     }
 
@@ -361,9 +361,9 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *         an empty list if none.
      *
      */
-    public List getModules() {
+    public List<Module> getModules() {
         if  (_modules==null) {
-            _modules=new ArrayList();
+            _modules=new ArrayList<Module>();
         }
         if (ModuleUtils.getModule(_modules,DCModule.URI)==null) {
             _modules.add(new DCModuleImpl());
@@ -378,7 +378,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setModules(List modules) {
+    public void setModules(List<Module> modules) {
         _modules = modules;
     }
 
@@ -401,7 +401,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
         return (DCModule) getModule(DCModule.URI);
     }
 
-    public Class getInterface() {
+    public Class<SyndEntry> getInterface() {
         return SyndEntry.class;
     }
 
@@ -412,7 +412,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
     private static final CopyFromHelper COPY_FROM_HELPER;
 
     static {
-        Map basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap<String, Class<?>>();
         basePropInterfaceMap.put("uri",String.class);
         basePropInterfaceMap.put("title",String.class);
         basePropInterfaceMap.put("link",String.class);
@@ -422,7 +422,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
         basePropInterfaceMap.put("enclosures",SyndEnclosure.class);
         basePropInterfaceMap.put("modules",Module.class);
 
-        Map<Class, Class> basePropClassImplMap = new HashMap<Class, Class>();
+        Map<Class<?>, Class<?>> basePropClassImplMap = new HashMap<Class<?>, Class<?>>();
         basePropClassImplMap.put(SyndContent.class,SyndContentImpl.class);
         basePropClassImplMap.put(SyndEnclosure.class,SyndEnclosureImpl.class);
         basePropClassImplMap.put(DCModule.class,DCModuleImpl.class);
@@ -436,8 +436,8 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      * <p>
      * @return Returns the links.
      */
-    public List getLinks() {
-        return (_links==null) ? (_links=new ArrayList()) : _links;
+    public List<SyndLink> getLinks() {
+        return (_links==null) ? (_links=new ArrayList<SyndLink>()) : _links;
     }
     
     /**
@@ -445,7 +445,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      * <p>
      * @param links The links to set.
      */
-    public void setLinks(List links) {
+    public void setLinks(List<SyndLink> links) {
         _links = links;
     }    
     
@@ -467,14 +467,14 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
         _updatedDate = updatedDate;
     }
 
-    public List getAuthors() {
-        return (_authors==null) ? (_authors=new ArrayList()) : _authors;
+    public List<SyndPerson> getAuthors() {
+        return (_authors==null) ? (_authors=new ArrayList<SyndPerson>()) : _authors;
     }
 
     /* (non-Javadoc)
      * @see com.sun.syndication.feed.synd.SyndEntry#setAuthors(java.util.List)
      */
-    public void setAuthors(List authors) {
+    public void setAuthors(List<SyndPerson> authors) {
         _authors = authors;
     }
 
@@ -492,7 +492,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
         // Start out looking for one or more authors in _authors. For non-Atom
         // feeds, _authors may actually be null.
         if ((_authors != null) && (_authors.size() > 0)) {
-            author = ((SyndPerson)_authors.get(0)).getName();
+            author = _authors.get(0).getName();
         } else {
             author = getDCModule().getCreator();
         }
@@ -522,14 +522,14 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
         }
     }
     
-    public List getContributors() {
-        return (_contributors==null) ? (_contributors=new ArrayList()) : _contributors;
+    public List<SyndPerson> getContributors() {
+        return (_contributors==null) ? (_contributors=new ArrayList<SyndPerson>()) : _contributors;
     }
 
     /* (non-Javadoc)
      * @see com.sun.syndication.feed.synd.SyndEntry#setContributors(java.util.List)
      */
-    public void setContributors(List contributors) {
+    public void setContributors(List<SyndPerson> contributors) {
         _contributors = contributors;
     }
     

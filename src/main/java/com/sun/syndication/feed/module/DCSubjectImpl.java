@@ -140,11 +140,11 @@ public class DCSubjectImpl implements Cloneable,Serializable, DCSubject {
     private static final CopyFromHelper COPY_FROM_HELPER;
 
     static {
-        Map basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap<String, Class<?>>();
         basePropInterfaceMap.put("taxonomyUri",String.class);
         basePropInterfaceMap.put("value",String.class);
 
-        Map<Class, Class> basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class<?>, Class<?>> basePropClassImplMap = Collections.EMPTY_MAP;
 
         COPY_FROM_HELPER = new CopyFromHelper(DCSubject.class,basePropInterfaceMap,basePropClassImplMap);
     }

@@ -669,7 +669,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
     private static final CopyFromHelper COPY_FROM_HELPER;
 
     static {
-        Map basePropInterfaceMap = new HashMap();
+        Map<String, Class<?>> basePropInterfaceMap = new HashMap<String, Class<?>>();
         basePropInterfaceMap.put("feedType",String.class);
         basePropInterfaceMap.put("encoding",String.class);
         basePropInterfaceMap.put("uri",String.class);
@@ -680,7 +680,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
         basePropInterfaceMap.put("entries",SyndEntry.class);
         basePropInterfaceMap.put("modules",Module.class);
 
-        Map<Class, Class> basePropClassImplMap = new HashMap<Class, Class>();
+        Map<Class<?>, Class<?>> basePropClassImplMap = new HashMap<Class<?>, Class<?>>();
         basePropClassImplMap.put(SyndEntry.class,SyndEntryImpl.class);
         basePropClassImplMap.put(SyndImage.class,SyndImageImpl.class);
         basePropClassImplMap.put(DCModule.class,DCModuleImpl.class);

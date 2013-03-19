@@ -57,7 +57,7 @@ public class RSS090Parser extends BaseWireFeedParser {
 
         Element rssRoot = document.getRootElement();
         Namespace defaultNS = rssRoot.getNamespace();
-        List additionalNSs = rssRoot.getAdditionalNamespaces();
+        List<Namespace> additionalNSs = rssRoot.getAdditionalNamespaces();
 
         ok = defaultNS!=null && defaultNS.equals(getRDFNamespace());
         if (ok) {

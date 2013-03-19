@@ -27,6 +27,8 @@ import java.util.List;
 import java.io.Serializable;
 import java.util.Iterator;
 
+import org.jdom.Element;
+
 /**
  * Bean for entry elements of Atom feeds.
  * <p>
@@ -51,7 +53,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
     private Date    _updated;        // AKA modified
     private List<Link>    _alternateLinks; 
     private List<Link>    _otherLinks;   
-    private List<Link>    _foreignMarkup;
+    private List<Element>    _foreignMarkup;
     
     private List<Module>    _modules;
     
@@ -90,7 +92,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
             return false;
         }
         // can't use foreign markup in equals, due to JDOM equals impl
-        Object fm = getForeignMarkup();
+        List<Element> fm = getForeignMarkup();
         setForeignMarkup(((Entry)other).getForeignMarkup());       
         boolean ret = _objBean.equals(other);
         // restore foreign markup
@@ -515,8 +517,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @return list of Opaque object to discourage use
      *
      */
-    public Object getForeignMarkup() {
-        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList<Link>()) : _foreignMarkup;
+    public List<Element> getForeignMarkup() {
+        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList<Element>()) : _foreignMarkup;
     }
 
     /**
@@ -525,8 +527,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @param foreignMarkup Opaque object to discourage use
      *
      */
-    public void setForeignMarkup(Object foreignMarkup) {
-        _foreignMarkup = (List<Link>)foreignMarkup;
+    public void setForeignMarkup(List<Element> foreignMarkup) {
+        _foreignMarkup = (List<Element>)foreignMarkup;
     }
     
     /**

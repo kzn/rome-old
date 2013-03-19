@@ -25,6 +25,8 @@ import com.sun.syndication.feed.impl.CopyFromHelper;
 import java.util.*;
 import java.io.Serializable; 
 
+import org.jdom.Element;
+
 /**
  * Bean for entries of SyndFeedImpl feeds.
  * <p>
@@ -45,7 +47,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
     private List _authors;
     private List _contributors;
     private SyndFeed _source;
-    private List _foreignMarkup;
+    private List<Element> _foreignMarkup;
     private Object wireEntry; // com.sun.syndication.feed.atom.Entry or com.sun.syndication.feed.rss.Item
     
     // ISSUE: some converters assume this is never null
@@ -116,7 +118,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
             return false;
         }
         // can't use foreign markup in equals, due to JDOM equals impl
-        Object fm = getForeignMarkup();
+        List<Element> fm = getForeignMarkup();
         setForeignMarkup(((SyndEntryImpl)other).getForeignMarkup());              
         boolean ret = _objBean.equals(other);
         // restore foreign markup
@@ -546,8 +548,8 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *         an empty list if none.
      *
      */
-    public Object getForeignMarkup() {
-        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList()) : _foreignMarkup;
+    public List<Element> getForeignMarkup() {
+        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList<Element>()) : _foreignMarkup;
     }
 
     /**
@@ -557,8 +559,8 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *         an empty list if none.
      *
      */
-    public void setForeignMarkup(Object foreignMarkup) {
-        _foreignMarkup = (List)foreignMarkup;
+    public void setForeignMarkup(List<Element> foreignMarkup) {
+        _foreignMarkup = foreignMarkup;
     }
 
 	public Object getWireEntry() {

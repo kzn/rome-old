@@ -204,7 +204,7 @@ public class RSS090Generator extends BaseWireFeedGenerator {
     }
 
     protected void addItems(Channel channel,Element parent) throws FeedException {
-        List items = channel.getItems();
+        List<Item> items = channel.getItems();
         for (int i=0;i<items.size();i++) {
             addItem((Item)items.get(i),parent, i);
         }

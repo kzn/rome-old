@@ -26,6 +26,8 @@ import java.util.Date;
 import java.util.List;
 import java.io.Serializable;
 
+import org.jdom.Element;
+
 /**
  * Bean for items of RSS feeds.
  * <p>
@@ -87,7 +89,7 @@ public class Item implements Cloneable, Serializable, Extendable {
             return false;
         }
         // can't use foreign markup in equals, due to JDOM equals impl
-        Object fm = getForeignMarkup();
+        List<Element> fm = getForeignMarkup();
         setForeignMarkup(((Item)other).getForeignMarkup());       
         boolean ret = _objBean.equals(other);
         // restore foreign markup
@@ -418,8 +420,8 @@ public class Item implements Cloneable, Serializable, Extendable {
      * @return Opaque object to discourage use
      *
      */
-    public Object getForeignMarkup() {
-        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList()) : _foreignMarkup;
+    public List<Element> getForeignMarkup() {
+        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList<Element>()) : _foreignMarkup;
     }
 
     /**
@@ -428,8 +430,8 @@ public class Item implements Cloneable, Serializable, Extendable {
      * @param foreignMarkup Opaque object to discourage use
      *
      */
-    public void setForeignMarkup(Object foreignMarkup) {
-        _foreignMarkup = (List)foreignMarkup;
+    public void setForeignMarkup(List<Element> foreignMarkup) {
+        _foreignMarkup = foreignMarkup;
     }
 
 }

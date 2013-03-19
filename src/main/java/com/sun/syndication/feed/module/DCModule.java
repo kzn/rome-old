@@ -43,7 +43,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getTitles();
+    List<String> getTitles();
 
     /**
      * Sets the DublinCore module titles.
@@ -78,7 +78,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getCreators();
+    List<String> getCreators();
 
     /**
      * Sets the DublinCore module creators.
@@ -113,7 +113,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getSubjects();
+    List<DCSubject> getSubjects();
 
     /**
      * Sets the DublinCore module subjects.
@@ -148,7 +148,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getDescriptions();
+    List<String> getDescriptions();
 
     /**
      * Sets the DublinCore module descriptions.
@@ -183,7 +183,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getPublishers();
+    List<String> getPublishers();
 
     /**
      * Sets the DublinCore module publishers.
@@ -218,7 +218,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getContributors();
+    List<String> getContributors();
 
     /**
      * Sets the DublinCore module contributors.
@@ -253,7 +253,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getDates();
+    List<Date> getDates();
 
     /**
      * Sets the DublinCore module dates.
@@ -288,7 +288,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getTypes();
+    List<String> getTypes();
 
     /**
      * Sets the DublinCore module types.
@@ -323,7 +323,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getFormats();
+    List<String> getFormats();
 
     /**
      * Sets the DublinCore module formats.
@@ -358,7 +358,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getIdentifiers();
+    List<String> getIdentifiers();
 
     /**
      * Sets the DublinCore module identifiers.
@@ -393,7 +393,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getSources();
+    List<String> getSources();
 
     /**
      * Sets the DublinCore module sources.
@@ -428,7 +428,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getLanguages();
+    List<String> getLanguages();
 
     /**
      * Sets the DublinCore module languages.
@@ -463,7 +463,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getRelations();
+    List<String> getRelations();
 
     /**
      * Sets the DublinCore module relations.
@@ -498,7 +498,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getCoverages();
+    List<String> getCoverages();
 
     /**
      * Sets the DublinCore module coverages.
@@ -533,7 +533,7 @@ public interface DCModule extends Module,CopyFrom {
      *         an empty list if none.
      *
      */
-    List getRightsList();
+    List<String> getRightsList();
 
     /**
      * Sets the DublinCore module rightss.

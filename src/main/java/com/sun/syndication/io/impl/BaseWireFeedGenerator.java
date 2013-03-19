@@ -1,5 +1,6 @@
 package com.sun.syndication.io.impl;
 
+import com.sun.syndication.feed.module.Module;
 import com.sun.syndication.io.WireFeedGenerator;
 import org.jdom.Element;
 import org.jdom.Namespace;
@@ -69,15 +70,15 @@ public abstract class BaseWireFeedGenerator implements WireFeedGenerator {
         }
     }
 
-    protected void generateFeedModules(List modules, Element feed) {
+    protected void generateFeedModules(List<Module> modules, Element feed) {
         _feedModuleGenerators.generateModules(modules, feed);
     }
 
-    public void generateItemModules(List modules, Element item) {
+    public void generateItemModules(List<Module> modules, Element item) {
         _itemModuleGenerators.generateModules(modules, item);
     }
 
-    public void generatePersonModules(List modules, Element person) {
+    public void generatePersonModules(List<Module> modules, Element person) {
         _personModuleGenerators.generateModules(modules, person);
     }
 
@@ -109,12 +110,12 @@ public abstract class BaseWireFeedGenerator implements WireFeedGenerator {
         java.util.Set<String> usedPrefixes = new java.util.HashSet<String>();
         collectUsedPrefixes(root, usedPrefixes);
 
-        List list = root.getAdditionalNamespaces();
-        List additionalNamespaces = new java.util.ArrayList();
+        List<Namespace> list = root.getAdditionalNamespaces();
+        List<Namespace> additionalNamespaces = new java.util.ArrayList<Namespace>();
         additionalNamespaces.addAll(list); // the duplication will prevent a ConcurrentModificationException below
 
         for (int i = 0; i < additionalNamespaces.size(); i++) {
-            Namespace ns = (Namespace) additionalNamespaces.get(i);
+            Namespace ns = additionalNamespaces.get(i);
             String prefix = ns.getPrefix();
             if (prefix != null && prefix.length() > 0 && !usedPrefixes.contains(prefix)) {
                 root.removeNamespaceDeclaration(ns);

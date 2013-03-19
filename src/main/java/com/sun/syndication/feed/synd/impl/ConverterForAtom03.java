@@ -41,6 +41,8 @@ import java.util.List;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.jdom.Element;
+
 /**
  */
 public class ConverterForAtom03 implements Converter {
@@ -63,7 +65,7 @@ public class ConverterForAtom03 implements Converter {
 
         syndFeed.setModules(ModuleUtils.cloneModules(aFeed.getModules()));
 
-        if (((List)feed.getForeignMarkup()).size() > 0) {
+        if (((List<Element>)feed.getForeignMarkup()).size() > 0) {
             syndFeed.setForeignMarkup(feed.getForeignMarkup());
         }
         
@@ -164,8 +166,8 @@ public class ConverterForAtom03 implements Converter {
         
         syndEntry.setModules(ModuleUtils.cloneModules(entry.getModules()));
 
-        if (((List)entry.getForeignMarkup()).size() >  0) {
-            syndEntry.setForeignMarkup((List)entry.getForeignMarkup());
+        if (((List<Element>)entry.getForeignMarkup()).size() >  0) {
+            syndEntry.setForeignMarkup((List<Element>)entry.getForeignMarkup());
         }
 
         syndEntry.setTitle(entry.getTitle());
@@ -178,11 +180,11 @@ public class ConverterForAtom03 implements Converter {
         }
 
         // Create synd enclosures from enclosure links
-        List syndEnclosures = new ArrayList();
+        List<SyndEnclosure> syndEnclosures = new ArrayList<SyndEnclosure>();
         if (entry.getOtherLinks() != null && entry.getOtherLinks().size() > 0) {
-            List oLinks = entry.getOtherLinks();
-            for (Iterator iter = oLinks.iterator(); iter.hasNext(); ) {
-                Link thisLink = (Link)iter.next();
+            List<Link> oLinks = entry.getOtherLinks();
+            for (Iterator<Link> iter = oLinks.iterator(); iter.hasNext(); ) {
+                Link thisLink = iter.next();
                 if ("enclosure".equals(thisLink.getRel()))
                     syndEnclosures.add(createSyndEnclosure(entry, thisLink));
             }
@@ -190,7 +192,7 @@ public class ConverterForAtom03 implements Converter {
         syndEntry.setEnclosures(syndEnclosures);
 
         // lump alternate and other links together
-        List syndLinks = new ArrayList();
+        List<SyndLink> syndLinks = new ArrayList<SyndLink>();
         if (entry.getAlternateLinks() != null
                 && entry.getAlternateLinks().size() > 0) {
             syndLinks.addAll(createSyndLinks(entry.getAlternateLinks()));
@@ -226,7 +228,7 @@ public class ConverterForAtom03 implements Converter {
 
         List contents = entry.getContents();
         if (contents.size()>0) {
-            List sContents = new ArrayList();
+            List<SyndContent> sContents = new ArrayList<SyndContent>();
             for (int i=0;i<contents.size();i++) {
                 content = (Content) contents.get(i);
                 SyndContent sContent = new SyndContentImpl();
@@ -347,7 +349,7 @@ public class ConverterForAtom03 implements Converter {
     protected static List<Person> createAtomPersons(List<SyndPerson> sPersons) {
         List<Person> persons = new ArrayList<Person>();
         for (Iterator<SyndPerson> iter = sPersons.iterator(); iter.hasNext(); ) {
-            SyndPerson sPerson = (SyndPerson)iter.next();
+            SyndPerson sPerson = iter.next();
             Person person = new Person();
             person.setName(sPerson.getName());
             person.setUri(sPerson.getUri());

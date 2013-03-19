@@ -27,6 +27,8 @@ import com.sun.syndication.feed.synd.impl.URINormalizer;
 import java.util.*;
 import java.io.Serializable;
 
+import org.jdom.Element;
+
 /**
  * Bean for all types of feeds.
  * <p>
@@ -45,20 +47,20 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
     private SyndContent _description;
     private String    _feedType;
     private String    _link;
-    private List      _links;
+    private List<SyndLink>      _links;
     private SyndImage _image;
-    private List      _entries;
-    private List      _modules;
-    private List      _authors;
-    private List      _contributors;
-    private List      _foreignMarkup;
+    private List<SyndEntry>      _entries;
+    private List<Module>      _modules;
+    private List<SyndPerson>      _authors;
+    private List<SyndPerson>      _contributors;
+    private List<Element>      _foreignMarkup;
     
     private WireFeed wireFeed = null;
     private boolean preserveWireFeed = false;
 
     private static final Converters CONVERTERS = new Converters();
 
-    private static final Set IGNORE_PROPERTIES = new HashSet();
+    private static final Set<String> IGNORE_PROPERTIES = new HashSet<String>();
 
     /**
      * Unmodifiable Set containing the convenience properties of this class.
@@ -67,7 +69,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * can be ignored as the will be copied as part of the module cloning.
      */
 
-    public static final Set CONVENIENCE_PROPERTIES = Collections.unmodifiableSet(IGNORE_PROPERTIES);
+    public static final Set<String> CONVENIENCE_PROPERTIES = Collections.unmodifiableSet(IGNORE_PROPERTIES);
 
     static {
         IGNORE_PROPERTIES.add("publishedDate");
@@ -169,7 +171,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
             return false;
         }
         // can't use foreign markup in equals, due to JDOM equals impl
-        Object fm = getForeignMarkup();
+        List<Element> fm = getForeignMarkup();
         setForeignMarkup(((SyndFeedImpl)other).getForeignMarkup());       
         boolean ret = _objBean.equals(other);
         // restore foreign markup
@@ -542,7 +544,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *         an empty list if none.
      *
      */
-    public List getCategories() {
+    public List<SyndCategory> getCategories() {
         return new SyndCategoryListFacade(getDCModule().getSubjects());
     }
 
@@ -555,7 +557,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setCategories(List categories) {
+    public void setCategories(List<SyndCategory> categories) {
         getDCModule().setSubjects(SyndCategoryListFacade.convertElementsSyndCategoryToSubject(categories));
     }
 
@@ -653,7 +655,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
         return (DCModule) getModule(DCModule.URI);
     }
 
-    public Class getInterface() {
+    public Class<SyndFeed> getInterface() {
         return SyndFeed.class;
     }
 
@@ -692,8 +694,8 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * <p>
      * @return Returns the links.
      */
-    public List getLinks() {
-        return (_links==null) ? (_links=new ArrayList()) : _links;
+    public List<SyndLink> getLinks() {
+        return (_links==null) ? (_links=new ArrayList<SyndLink>()) : _links;
     }
     
     /**
@@ -701,15 +703,15 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * <p>
      * @param links The links to set.
      */
-    public void setLinks(List links) {
+    public void setLinks(List<SyndLink> links) {
         _links = links;
     }
 
-    public List getAuthors() {
-        return (_authors==null) ? (_authors=new ArrayList()) : _authors;
+    public List<SyndPerson> getAuthors() {
+        return (_authors==null) ? (_authors=new ArrayList<SyndPerson>()) : _authors;
     }
 
-    public void setAuthors(List authors) {
+    public void setAuthors(List<SyndPerson> authors) {
         this._authors = authors;
     }
 
@@ -737,11 +739,11 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
         getDCModule().setCreator(author);
     }    
     
-    public List getContributors() {
-        return (_contributors==null) ? (_contributors=new ArrayList()) : _contributors;
+    public List<SyndPerson> getContributors() {
+        return (_contributors==null) ? (_contributors=new ArrayList<SyndPerson>()) : _contributors;
     }
 
-    public void setContributors(List contributors) {
+    public void setContributors(List<SyndPerson> contributors) {
         this._contributors = contributors;
     }
 
@@ -751,8 +753,8 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      * @return Opaque object to discourage use
      *
      */
-    public Object getForeignMarkup() {
-        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList()) : _foreignMarkup;
+    public List<Element> getForeignMarkup() {
+        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList<Element>()) : _foreignMarkup;
     }
 
     /**
@@ -762,7 +764,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
      *
      */
     public void setForeignMarkup(Object foreignMarkup) {
-        _foreignMarkup = (List)foreignMarkup;
+        _foreignMarkup = (List<Element>)foreignMarkup;
     }
 
 	public boolean isPreservingWireFeed() {		

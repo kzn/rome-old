@@ -36,7 +36,7 @@ public class EqualsBean implements Serializable {
 
     private static final Object[] NO_PARAMS = new Object[0];
 
-    private Class _beanClass;
+    private Class<?> _beanClass;
     private Object _obj;
 
     /**
@@ -47,7 +47,7 @@ public class EqualsBean implements Serializable {
      * @param beanClass the class/interface to be used for property scanning.
      *
      */
-    protected EqualsBean(Class beanClass) {
+    protected EqualsBean(Class<?> beanClass) {
         _beanClass = beanClass;
         _obj = this;
     }
@@ -80,7 +80,7 @@ public class EqualsBean implements Serializable {
      * @param obj object bean to test equality.
      *
      */
-    public EqualsBean(Class beanClass,Object obj) {
+    public EqualsBean(Class<?> beanClass,Object obj) {
         if (!beanClass.isInstance(obj)) {
             throw new IllegalArgumentException(obj.getClass()+" is not instance of "+beanClass);
         }
@@ -197,8 +197,8 @@ public class EqualsBean implements Serializable {
     private boolean doEquals(Object obj1, Object obj2) {
         boolean eq = obj1==obj2;
         if (!eq && obj1!=null && obj2!=null) {
-            Class classObj1 = obj1.getClass();
-            Class classObj2 = obj2.getClass();
+            Class<?> classObj1 = obj1.getClass();
+            Class<?> classObj2 = obj2.getClass();
             if (classObj1.isArray() && classObj2.isArray()) {
                 eq = equalsArray(obj1, obj2);
             }

@@ -54,7 +54,7 @@ public class CopyFromHelper {
                         _baseInterfaceMap.containsKey(propertyName)) {   // only copies properties defined as copyFrom-able
                         Object value = pReadMethod.invoke(source,NO_PARAMS);
                         if (value!=null) {
-                            Class baseInterface = _baseInterfaceMap.get(propertyName);
+                            Class<?> baseInterface = _baseInterfaceMap.get(propertyName);
                             value = doCopy(value,baseInterface);
                             pWriteMethod.invoke(target,new Object[]{value});
                         }
@@ -67,7 +67,7 @@ public class CopyFromHelper {
         }
     }
 
-    private CopyFrom createInstance(Class interfaceClass) throws Exception {
+    private CopyFrom createInstance(Class<?> interfaceClass) throws Exception {
         if( _baseImplMap.get(interfaceClass) == null ){
             return null;
         }
@@ -76,7 +76,7 @@ public class CopyFromHelper {
         }
     }
 
-    private Object doCopy(Object value,Class baseInterface) throws Exception {
+    private Object doCopy(Object value,Class<?> baseInterface) throws Exception {
         if (value!=null) {
             Class vClass = value.getClass();
             if (vClass.isArray()) {
@@ -84,7 +84,7 @@ public class CopyFromHelper {
             }
             else
             if (value instanceof Collection) {
-                value = doCopyCollection((Collection)value,baseInterface);
+                value = doCopyCollection((Collection<?>)value,baseInterface);
             }
             else
             if (value instanceof Map) {

@@ -88,7 +88,7 @@ public class ToStringBean implements Serializable {
      * @param obj object bean to create String representation.
      *
      */
-    public ToStringBean(Class beanClass,Object obj) {
+    public ToStringBean(Class<?> beanClass,Object obj) {
         _beanClass = beanClass;
         _obj = obj;
     }
@@ -156,11 +156,11 @@ public class ToStringBean implements Serializable {
         }
         else
         if (value instanceof Map) {
-            Map map = (Map) value;
-            Iterator i = map.entrySet().iterator();
+            Map<?,?> map = (Map<?,?>) value;
+            Iterator<?> i = map.entrySet().iterator();
             if (i.hasNext()) {
                 while (i.hasNext()) {
-                    Map.Entry me = (Map.Entry) i.next();
+                    Map.Entry<?, ?> me = (Map.Entry<?, ?>) i.next();
                     String ePrefix = prefix+"["+me.getKey()+"]";
                     Object eValue = me.getValue();
 
@@ -185,8 +185,8 @@ public class ToStringBean implements Serializable {
         }
         else
         if (value instanceof Collection) {
-            Collection collection = (Collection) value;
-            Iterator i = collection.iterator();
+            Collection<?> collection = (Collection<?>) value;
+            Iterator<?> i = collection.iterator();
             if (i.hasNext()) {
                 int c = 0;
                 while (i.hasNext()) {

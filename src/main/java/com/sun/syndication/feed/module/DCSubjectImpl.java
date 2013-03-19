@@ -16,13 +16,12 @@
  */
 package com.sun.syndication.feed.module;
 
-import com.sun.syndication.feed.impl.ObjectBean;
-import com.sun.syndication.feed.impl.CopyFromHelper;
-
-import java.util.Collections;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import java.io.Serializable;
+
+import com.sun.syndication.feed.impl.CopyFromHelper;
+import com.sun.syndication.feed.impl.ObjectBean;
 
 /**
  * Subject of the Dublin Core ModuleImpl, default implementation.
@@ -144,7 +143,7 @@ public class DCSubjectImpl implements Cloneable,Serializable, DCSubject {
         basePropInterfaceMap.put("taxonomyUri",String.class);
         basePropInterfaceMap.put("value",String.class);
 
-        Map<Class<?>, Class<?>> basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class<?>, Class<?>> basePropClassImplMap = new HashMap<Class<?>, Class<?>>();
 
         COPY_FROM_HELPER = new CopyFromHelper(DCSubject.class,basePropInterfaceMap,basePropClassImplMap);
     }

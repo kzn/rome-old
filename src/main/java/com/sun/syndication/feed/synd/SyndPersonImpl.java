@@ -16,16 +16,13 @@
  */
 package com.sun.syndication.feed.synd;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.sun.syndication.feed.impl.ObjectBean;
-import com.sun.syndication.feed.module.DCSubjectImpl;
-import com.sun.syndication.feed.module.DCSubject;
 import com.sun.syndication.feed.module.Module;
 import com.sun.syndication.feed.module.impl.ModuleUtils;
-
-import java.util.AbstractList;
-import java.util.List;
-import java.util.ArrayList;
-import java.io.Serializable;
 
 /**
  * Bean for authors and contributors of SyndFeedImpl feeds and entries.

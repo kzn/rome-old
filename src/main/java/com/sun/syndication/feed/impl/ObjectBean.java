@@ -52,7 +52,7 @@ public class ObjectBean implements Serializable, Cloneable {
      * @param beanClass the class/interface to be used for property scanning.
      *
      */
-    public ObjectBean(Class beanClass,Object obj) {
+    public ObjectBean(Class<?> beanClass,Object obj) {
         this(beanClass,obj,null);
     }
 
@@ -70,7 +70,7 @@ public class ObjectBean implements Serializable, Cloneable {
      * @param ignoreProperties properties to ignore when cloning.
      *
      */
-    public ObjectBean(Class beanClass,Object obj,Set ignoreProperties) {
+    public ObjectBean(Class<?> beanClass,Object obj,Set<String> ignoreProperties) {
         _equalsBean = new EqualsBean(beanClass,obj);
         _toStringBean = new ToStringBean(beanClass,obj);
         _cloneableBean = new CloneableBean(obj,ignoreProperties);

@@ -587,7 +587,6 @@ public class Atom10Parser extends BaseWireFeedParser {
         base = stripTrailingSlash(base);
         append = stripStartingSlash(append);
         if (append.startsWith("..")) {
-            String ret = null;
             String[] parts = append.split("/");
             for (int i=0; i<parts.length; i++) {
                 if ("..".equals(parts[i])) {

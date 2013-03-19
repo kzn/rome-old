@@ -170,7 +170,7 @@ public class SyndImageImpl implements Serializable,SyndImage {
         _description = description;
     }
 
-    public Class getInterface() {
+    public Class<?> getInterface() {
         return SyndImage.class;
     }
 

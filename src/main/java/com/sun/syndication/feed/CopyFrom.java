@@ -29,7 +29,7 @@ public interface CopyFrom {
      * <p>
      * @return the interface the copyFrom works on.
      */
-    public Class getInterface();
+    public Class<?> getInterface();
 
     /**
      * Copies all the properties of the given bean into this one.

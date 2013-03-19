@@ -38,10 +38,10 @@ public class Entry implements Cloneable, Serializable, Extendable {
     private ObjectBean _objBean;
     
     private String  _xmlBase;
-    private List    _authors;
-    private List    _contributors;
-    private List    _categories;   
-    private List    _contents;       
+    private List<Person>    _authors;
+    private List<Person>    _contributors;
+    private List<Category>    _categories;   
+    private List<Content>    _contents;       
     private String  _id;
     private Date    _published;      // AKA issued  
     private String  _rights;        
@@ -49,11 +49,11 @@ public class Entry implements Cloneable, Serializable, Extendable {
     private Content _summary;
     private Content _title;
     private Date    _updated;        // AKA modified
-    private List    _alternateLinks; 
-    private List    _otherLinks;   
+    private List<Link>    _alternateLinks; 
+    private List<Link>    _otherLinks;   
     private List    _foreignMarkup;
     
-    private List    _modules;
+    private List<Module>    _modules;
     
     private Date    _created;        // Atom 0.3 only
 
@@ -167,8 +167,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * <p>
      * @return a list of Link elements with the entry alternate links, an empty list if none.
      */
-    public List getAlternateLinks() {
-        return (_alternateLinks==null) ? (_alternateLinks=new ArrayList()) : _alternateLinks;
+    public List<Link> getAlternateLinks() {
+        return (_alternateLinks==null) ? (_alternateLinks=new ArrayList<Link>()) : _alternateLinks;
     }
 
     /**
@@ -177,7 +177,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @param alternateLinks the list of Link elements with the entry alternate links to set,
      *        an empty list or <b>null</b> if none.
      */
-    public void setAlternateLinks(List alternateLinks) {
+    public void setAlternateLinks(List<Link> alternateLinks) {
         _alternateLinks = alternateLinks;
     }
 
@@ -187,8 +187,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @return the list of Link elements with the entry non-alternate links to set,
      *         an empty list if none.
      */
-    public List getOtherLinks() {
-        return (_otherLinks==null) ? (_otherLinks=new ArrayList()) : _otherLinks;
+    public List<Link> getOtherLinks() {
+        return (_otherLinks==null) ? (_otherLinks=new ArrayList<Link>()) : _otherLinks;
     }
 
     /**
@@ -197,7 +197,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @param otherLinks the list Link elements with the entry non-alternate links to set,
      *        an empty list or <b>null</b> if none.
      */
-    public void setOtherLinks(List otherLinks) {
+    public void setOtherLinks(List<Link> otherLinks) {
         _otherLinks = otherLinks;
     }
 
@@ -207,8 +207,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @return the entry author, <b>null</b> if none.
      *
      */
-    public List getAuthors() {
-        return (_authors==null) ? (_authors=new ArrayList()) : _authors;
+    public List<Person> getAuthors() {
+        return (_authors==null) ? (_authors=new ArrayList<Person>()) : _authors;
     }
 
     /**
@@ -217,7 +217,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @param authors the author of the entry, <b>null</b> if none.
      *
      */
-    public void setAuthors(List authors) {
+    public void setAuthors(List<Person> authors) {
         _authors = authors;
     }
 
@@ -228,8 +228,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      *         an empty list if none.
      *
      */
-    public List getContributors() {
-        return (_contributors==null) ? (_contributors=new ArrayList()) : _contributors;
+    public List<Person> getContributors() {
+        return (_contributors==null) ? (_contributors=new ArrayList<Person>()) : _contributors;
     }
 
     /**
@@ -239,7 +239,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setContributors(List contributors) {
+    public void setContributors(List<Person> contributors) {
         _contributors = contributors;
     }
 
@@ -343,8 +343,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @return a list of Content elements with the entry contents,
      *         an empty list if none.
      */
-    public List getContents() {
-        return (_contents==null) ? (_contents=new ArrayList()) : _contents;
+    public List<Content> getContents() {
+        return (_contents==null) ? (_contents=new ArrayList<Content>()) : _contents;
     }
 
     /**
@@ -353,7 +353,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @param contents the list of Content elements with the entry contents to set,
      *        an empty list or <b>null</b> if none.
      */
-    public void setContents(List contents) {
+    public void setContents(List<Content> contents) {
         _contents = contents;
     }
 
@@ -364,8 +364,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      *         an emtpy list if none.
      *
      */
-    public List getModules() {
-        return (_modules==null) ? (_modules=new ArrayList()) : _modules;
+    public List<Module> getModules() {
+        return (_modules==null) ? (_modules=new ArrayList<Module>()) : _modules;
     }
 
     /**
@@ -375,7 +375,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setModules(List modules) {
+    public void setModules(List<Module> modules) {
         _modules = modules;
     }
 
@@ -473,8 +473,8 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @return Returns the categories.
      * @since Atom 1.0
      */
-    public List getCategories() {
-       return (_categories==null) ? (_categories=new ArrayList()) : _categories;
+    public List<Category> getCategories() {
+       return (_categories==null) ? (_categories=new ArrayList<Category>()) : _categories;
 
     }
     
@@ -484,7 +484,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      * @param categories The categories to set.
      * @since Atom 1.0
      */
-    public void setCategories(List categories) {
+    public void setCategories(List<Category> categories) {
         _categories = categories;
     }
 
@@ -516,7 +516,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      *
      */
     public Object getForeignMarkup() {
-        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList()) : _foreignMarkup;
+        return (_foreignMarkup==null) ? (_foreignMarkup=new ArrayList<Link>()) : _foreignMarkup;
     }
 
     /**
@@ -536,9 +536,9 @@ public class Entry implements Cloneable, Serializable, Extendable {
      */
     public boolean isMediaEntry() {
         boolean mediaEntry = false;
-        List links = getOtherLinks();
-        for (Iterator it = links.iterator(); it.hasNext();) {
-            Link link = (Link) it.next();
+        List<Link> links = getOtherLinks();
+        for (Iterator<Link> it = links.iterator(); it.hasNext();) {
+            Link link = it.next();
             if ("edit-media".equals(link.getRel())) {
                 mediaEntry = true;
                 break;

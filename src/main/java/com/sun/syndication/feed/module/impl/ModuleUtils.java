@@ -25,14 +25,14 @@ import java.util.List;
  */
 public class ModuleUtils {
 
-    public static List cloneModules(List modules) {
-        List cModules = null;
+    public static List<Module> cloneModules(List<Module> modules) {
+        List<Module> cModules = null;
         if (modules!=null) {
-            cModules = new ArrayList();
+            cModules = new ArrayList<Module>();
             for (int i=0;i<modules.size();i++) {
                 Module module = (Module) modules.get(i);
                 try {
-                    Object c = module.clone();
+                    Module c = (Module)module.clone();
                     cModules.add(c);
                 }
                 catch (Exception ex) {
@@ -43,10 +43,10 @@ public class ModuleUtils {
         return cModules;
     }
 
-    public static Module getModule(List modules,String uri) {
+    public static Module getModule(List<Module> modules,String uri) {
         Module module = null;
         for (int i=0;module==null && modules!=null && i<modules.size();i++) {
-            module = (Module) modules.get(i);
+            module = modules.get(i);
             if (!module.getUri().equals(uri)) {
                 module = null;
             }

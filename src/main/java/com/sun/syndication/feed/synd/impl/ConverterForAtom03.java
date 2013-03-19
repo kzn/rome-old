@@ -80,7 +80,7 @@ public class ConverterForAtom03 implements Converter {
             syndFeed.setLink(theLink.getHrefResolved());
         }
         // lump alternate and other links together
-        List syndLinks = new ArrayList();
+        List<SyndLink> syndLinks = new ArrayList<SyndLink>();
         if (aFeed.getAlternateLinks() != null
                 && aFeed.getAlternateLinks().size() > 0) {
             syndLinks.addAll(createSyndLinks(aFeed.getAlternateLinks()));
@@ -127,10 +127,10 @@ public class ConverterForAtom03 implements Converter {
 
     }
 
-    protected List createSyndLinks(List aLinks) {
-        ArrayList sLinks = new ArrayList();
-        for (Iterator iter = aLinks.iterator(); iter.hasNext();) {
-            Link link = (Link)iter.next();
+    protected List<SyndLink> createSyndLinks(List<Link> aLinks) {
+        ArrayList<SyndLink> sLinks = new ArrayList<SyndLink>();
+        for (Iterator<Link> iter = aLinks.iterator(); iter.hasNext();) {
+            Link link = iter.next();
             if (!link.getRel().equals("enclosure")) {
                 SyndLink sLink = createSyndLink(link);
                 sLinks.add(sLink);
@@ -148,8 +148,8 @@ public class ConverterForAtom03 implements Converter {
         return syndLink;
     }
 
-    protected List createSyndEntries(List atomEntries, boolean preserveWireItems) {
-        List syndEntries = new ArrayList();
+    protected List<SyndEntry> createSyndEntries(List<Entry> atomEntries, boolean preserveWireItems) {
+        List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
         for (int i=0;i<atomEntries.size();i++) {
             syndEntries.add(createSyndEntry((Entry) atomEntries.get(i), preserveWireItems));
         }
@@ -358,10 +358,10 @@ public class ConverterForAtom03 implements Converter {
         return persons;
     }
     
-    protected static List createSyndPersons(List aPersons) {
-        List persons = new ArrayList();
-        for (Iterator iter = aPersons.iterator(); iter.hasNext(); ) {
-            Person aPerson = (Person)iter.next();
+    protected static List<SyndPerson> createSyndPersons(List<Person> aPersons) {
+        List<SyndPerson> persons = new ArrayList<SyndPerson>();
+        for (Iterator<Person> iter = aPersons.iterator(); iter.hasNext(); ) {
+            Person aPerson = iter.next();
             SyndPerson person = new SyndPersonImpl();
             person.setName(aPerson.getName());
             person.setUri(aPerson.getUri());

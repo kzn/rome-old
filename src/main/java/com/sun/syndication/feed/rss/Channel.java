@@ -32,7 +32,12 @@ import java.util.*;
  *
  */
 public class Channel extends WireFeed {
-    public static final String SUNDAY    = "sunday";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	public static final String SUNDAY    = "sunday";
     public static final String MONDAY    = "monday";
     public static final String TUESDAY   = "tuesday";
     public static final String WEDNESDAY = "wednesday";
@@ -40,7 +45,7 @@ public class Channel extends WireFeed {
     public static final String FRIDAY    = "friday";
     public static final String SATURDAY  = "saturday";
 
-    private static final Set DAYS = new HashSet();
+    private static final Set<String> DAYS = new HashSet<String>();
 
     static {
         DAYS.add(SUNDAY   );
@@ -57,7 +62,7 @@ public class Channel extends WireFeed {
     private String _link;
     private String _uri;
     private Image _image;
-    private List _items;
+    private List<Item> _items;
     private TextInput _textInput;
     private String _language;
     private String _rating;
@@ -67,13 +72,13 @@ public class Channel extends WireFeed {
     private String _docs;
     private String _managingEditor;
     private String _webMaster;
-    private List _skipHours;
-    private List _skipDays;
+    private List<Integer> _skipHours;
+    private List<String> _skipDays;
     private Cloud _cloud;
-    private List _categories;
+    private List<Category> _categories;
     private String _generator;
     private int _ttl = -1;
-    private List _modules;
+    private List<Module> _modules;
 
     /**
      * Default constructor, for bean cloning purposes only.
@@ -197,8 +202,8 @@ public class Channel extends WireFeed {
      *         an empty list if none.
      *
      */
-    public List getItems() {
-        return (_items==null) ? (_items=new ArrayList()) : _items;
+    public List<Item> getItems() {
+        return (_items==null) ? (_items=new ArrayList<Item>()) : _items;
     }
 
     /**
@@ -208,7 +213,7 @@ public class Channel extends WireFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setItems(List items) {
+    public void setItems(List<Item> items) {
         _items = items;
     }
 
@@ -399,8 +404,8 @@ public class Channel extends WireFeed {
      *         an empty list if none.
      *
      */
-    public List getSkipHours() {
-        return (_skipHours!=null) ? _skipHours : new ArrayList();
+    public List<Integer> getSkipHours() {
+        return (_skipHours!=null) ? _skipHours : new ArrayList<Integer>();
     }
 
     /**
@@ -410,10 +415,11 @@ public class Channel extends WireFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setSkipHours(List skipHours) {
+    public void setSkipHours(List<Integer> skipHours) {
         if (skipHours!=null) {
             for (int i=0;i<skipHours.size();i++) {
-                Integer iHour = (Integer) skipHours.get(i);
+                Integer iHour = skipHours.get(i);
+                
                 if (iHour!=null) {
                     int hour = iHour.intValue();
                     if (hour<0 || hour>24) {
@@ -435,8 +441,8 @@ public class Channel extends WireFeed {
      *         an empty list if none.
      *
      */
-    public List getSkipDays() {
-        return (_skipDays!=null) ? _skipDays : new ArrayList();
+    public List<String> getSkipDays() {
+        return (_skipDays!=null) ? _skipDays : new ArrayList<String>();
     }
 
     /**
@@ -446,10 +452,10 @@ public class Channel extends WireFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setSkipDays(List skipDays) {
+    public void setSkipDays(List<String> skipDays) {
         if (skipDays!=null) {
             for (int i=0;i<skipDays.size();i++) {
-                String day = (String) skipDays.get(i);
+                String day = skipDays.get(i);
                 if (day!=null) {
                     day = day.toLowerCase();
                     if (!DAYS.contains(day)) {
@@ -492,8 +498,8 @@ public class Channel extends WireFeed {
      *         an empty list if none.
      *
      */
-    public List getCategories() {
-        return (_categories==null) ? (_categories=new ArrayList()) : _categories;
+    public List<Category> getCategories() {
+        return (_categories==null) ? (_categories=new ArrayList<Category>()) : _categories;
     }
 
     /**
@@ -503,7 +509,7 @@ public class Channel extends WireFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setCategories(List categories) {
+    public void setCategories(List<Category> categories) {
         _categories = categories;
     }
 
@@ -554,8 +560,8 @@ public class Channel extends WireFeed {
      *         an empty list if none.
      *
      */
-    public List getModules() {
-        return (_modules==null) ? (_modules=new ArrayList()) : _modules;
+    public List<Module> getModules() {
+        return (_modules==null) ? (_modules=new ArrayList<Module>()) : _modules;
     }
 
     /**
@@ -565,7 +571,7 @@ public class Channel extends WireFeed {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setModules(List modules) {
+    public void setModules(List<Module> modules) {
         _modules = modules;
     }
 

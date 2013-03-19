@@ -16,10 +16,9 @@
  */
 package com.sun.syndication.feed.atom;
 
-import com.sun.syndication.feed.impl.ObjectBean;
-import com.sun.syndication.feed.impl.ObjectBean;
-
 import java.io.Serializable;
+
+import com.sun.syndication.feed.impl.ObjectBean;
 
 /**
  * Bean for the generator element of Atom feeds.

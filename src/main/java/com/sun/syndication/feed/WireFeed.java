@@ -42,7 +42,7 @@ public abstract class WireFeed implements Cloneable, Serializable, Extendable {
     private ObjectBean _objBean;
     private String _feedType;
     private String _encoding;
-    private List _modules;
+    private List<Module> _modules;
     private List _foreignMarkup;
 
     /**
@@ -175,8 +175,8 @@ public abstract class WireFeed implements Cloneable, Serializable, Extendable {
      *         an empty list if none.
      *
      */
-    public List getModules() {
-        return (_modules==null) ? (_modules=new ArrayList()) : _modules;
+    public List<Module> getModules() {
+        return (_modules==null) ? (_modules=new ArrayList<Module>()) : _modules;
     }
 
     /**
@@ -186,7 +186,7 @@ public abstract class WireFeed implements Cloneable, Serializable, Extendable {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setModules(List modules) {
+    public void setModules(List<Module> modules) {
         _modules = modules;
     }
 

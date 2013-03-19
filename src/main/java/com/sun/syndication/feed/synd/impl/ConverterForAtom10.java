@@ -210,10 +210,10 @@ public class ConverterForAtom10 implements Converter {
             syndEntry.setUpdatedDate(date);
         }
         
-        List categories = entry.getCategories();
+        List<Category> categories = entry.getCategories();
         if (categories!=null) {
-            List syndCategories = new ArrayList();
-            for (Iterator iter=categories.iterator(); iter.hasNext();) {
+            List<SyndCategory> syndCategories = new ArrayList<SyndCategory>();
+            for (Iterator<Category> iter=categories.iterator(); iter.hasNext();) {
                 Category c = (Category)iter.next();
                 SyndCategory syndCategory = new SyndCategoryImpl();
                 syndCategory.setName(c.getTerm()); 

@@ -49,9 +49,9 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
     private Object wireEntry; // com.sun.syndication.feed.atom.Entry or com.sun.syndication.feed.rss.Item
     
     // ISSUE: some converters assume this is never null
-    private List _categories = new ArrayList(); 
+    private List<SyndCategory> _categories = new ArrayList<SyndCategory>(); 
 
-    private static final Set IGNORE_PROPERTIES = new HashSet();
+    private static final Set<String> IGNORE_PROPERTIES = new HashSet<String>();
 
     /**
      * Unmodifiable Set containing the convenience properties of this class.
@@ -59,7 +59,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      * Convenience properties are mapped to Modules, for cloning the convenience properties
      * can be ignored as the will be copied as part of the module cloning.
      */
-    public static final Set CONVENIENCE_PROPERTIES = Collections.unmodifiableSet(IGNORE_PROPERTIES);
+    public static final Set<String> CONVENIENCE_PROPERTIES = Collections.unmodifiableSet(IGNORE_PROPERTIES);
 
     static {
         IGNORE_PROPERTIES.add("publishedDate");
@@ -348,7 +348,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setCategories(List categories) {
+    public void setCategories(List<SyndCategory> categories) {
         _categories = categories;
     }
 

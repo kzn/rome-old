@@ -46,13 +46,13 @@ public class Item implements Cloneable, Serializable, Extendable {
     private Content _content;
     private Source _source;
     private List _enclosures;
-    private List _categories;
+    private List<Category> _categories;
     private Guid _guid;
     private String _comments;
     private String _author;
     private Date _pubDate;
     private Date _expirationDate;
-    private List _modules;
+    private List<Module> _modules;
     private List _foreignMarkup;
 
     /**
@@ -264,8 +264,8 @@ public class Item implements Cloneable, Serializable, Extendable {
      *         an empty list if none.
      *
      */
-    public List getCategories() {
-        return (_categories==null) ? (_categories=new ArrayList()) : _categories;
+    public List<Category> getCategories() {
+        return (_categories==null) ? (_categories=new ArrayList<Category>()) : _categories;
     }
 
     /**
@@ -275,7 +275,7 @@ public class Item implements Cloneable, Serializable, Extendable {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setCategories(List categories) {
+    public void setCategories(List<Category> categories) {
         _categories = categories;
     }
 
@@ -346,8 +346,8 @@ public class Item implements Cloneable, Serializable, Extendable {
      *         an empty list if none.
      *
      */
-    public List getModules() {
-        return (_modules==null) ? (_modules=new ArrayList()) : _modules;
+    public List<Module> getModules() {
+        return (_modules==null) ? (_modules=new ArrayList<Module>()) : _modules;
     }
 
     /**
@@ -357,7 +357,7 @@ public class Item implements Cloneable, Serializable, Extendable {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setModules(List modules) {
+    public void setModules(List<Module> modules) {
         _modules = modules;
     }
 

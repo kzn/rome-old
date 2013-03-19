@@ -55,7 +55,7 @@ public class Content implements Cloneable,Serializable {
     public static final String ESCAPED = "escaped"; 
 
     private String _mode;  
-    private static final Set MODES = new HashSet(); 
+    private static final Set<String> MODES = new HashSet<String>(); 
     static {
         MODES.add(XML);
         MODES.add(BASE64);

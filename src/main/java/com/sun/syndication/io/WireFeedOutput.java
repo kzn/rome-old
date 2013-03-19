@@ -43,12 +43,11 @@ import java.util.WeakHashMap;
  *
  */
 public class WireFeedOutput {
-    private static Map clMap = new WeakHashMap();
+    private static Map<ClassLoader, FeedGenerators> clMap = new WeakHashMap<ClassLoader, FeedGenerators>();
 
     private static FeedGenerators getFeedGenerators() {
         synchronized(WireFeedOutput.class) {
-            FeedGenerators generators = (FeedGenerators)
-                clMap.get(Thread.currentThread().getContextClassLoader());
+            FeedGenerators generators = clMap.get(Thread.currentThread().getContextClassLoader());
             if (generators == null) {
                 generators = new FeedGenerators();
                 clMap.put(Thread.currentThread().getContextClassLoader(), generators);

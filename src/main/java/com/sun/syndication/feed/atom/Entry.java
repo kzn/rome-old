@@ -51,7 +51,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
     private Date    _updated;        // AKA modified
     private List<Link>    _alternateLinks; 
     private List<Link>    _otherLinks;   
-    private List    _foreignMarkup;
+    private List<Link>    _foreignMarkup;
     
     private List<Module>    _modules;
     
@@ -526,7 +526,7 @@ public class Entry implements Cloneable, Serializable, Extendable {
      *
      */
     public void setForeignMarkup(Object foreignMarkup) {
-        _foreignMarkup = (List)foreignMarkup;
+        _foreignMarkup = (List<Link>)foreignMarkup;
     }
     
     /**

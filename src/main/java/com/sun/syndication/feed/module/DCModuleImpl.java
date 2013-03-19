@@ -31,21 +31,21 @@ import java.util.*;
  */
 public class DCModuleImpl extends ModuleImpl implements DCModule {
     private ObjectBean _objBean;
-    private List _title;
-    private List _creator;
-    private List _subject;
-    private List _description;
-    private List _publisher;
-    private List _contributors;
-    private List _date;
-    private List _type;
-    private List _format;
-    private List _identifier;
-    private List _source;
-    private List _language;
-    private List _relation;
-    private List _coverage;
-    private List _rights;
+    private List<String> _title;
+    private List<String> _creator;
+    private List<DCSubject> _subject;
+    private List<String> _description;
+    private List<String> _publisher;
+    private List<String> _contributors;
+    private List<Date> _date;
+    private List<String> _type;
+    private List<String> _format;
+    private List<String> _identifier;
+    private List<String> _source;
+    private List<String> _language;
+    private List<String> _relation;
+    private List<String> _coverage;
+    private List<String> _rights;
 
     /**
      * Properties to be ignored when cloning.
@@ -97,7 +97,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getTitles() {
-        return (_title == null) ? (_title = new ArrayList()) : _title;
+        return (_title == null) ? (_title = new ArrayList<String>()) : _title;
     }
 
     /**
@@ -107,7 +107,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		titles to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setTitles(List titles) {
+    public void setTitles(List<String> titles) {
     		_title = titles;
     }
 
@@ -118,7 +118,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * @return the first DublinCore module title, <b>null</b> if none.
      */
     public String getTitle() {
-        return ((_title != null) && (_title.size() > 0)) ? (String) _title.get(0) : null;
+        return ((_title != null) && (_title.size() > 0)) ? _title.get(0) : null;
     }
 
     /**
@@ -129,7 +129,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setTitle(String title) {
-    		_title = new ArrayList();
+    		_title = new ArrayList<String>();
     		_title.add(title);
     }
 
@@ -141,7 +141,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getCreators() {
-        return (_creator == null) ? (_creator = new ArrayList()) : _creator;
+        return (_creator == null) ? (_creator = new ArrayList<String>()) : _creator;
     }
 
     /**
@@ -151,7 +151,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		creators to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setCreators(List creators) {
+    public void setCreators(List<String> creators) {
         _creator = creators;
     }
     
@@ -162,7 +162,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * @return the first DublinCore module title, <b>null</b> if none.
      */
     public String getCreator() {
-        return ((_creator != null) && (_creator.size() > 0)) ? (String) _creator.get(0) : null;
+        return ((_creator != null) && (_creator.size() > 0)) ? _creator.get(0) : null;
     }
     
     /**
@@ -173,7 +173,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setCreator(String creator) {
-        _creator = new ArrayList();
+        _creator = new ArrayList<String>();
         _creator.add(creator);
     }
 
@@ -185,7 +185,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getSubjects() {
-        return (_subject == null) ? (_subject = new ArrayList()) : _subject;
+        return (_subject == null) ? (_subject = new ArrayList<DCSubject>()) : _subject;
     }
 
     /**
@@ -195,7 +195,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		module subjects to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setSubjects(List subjects) {
+    public void setSubjects(List<DCSubject> subjects) {
         _subject = subjects;
     }
 
@@ -207,7 +207,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public DCSubject getSubject() {
         return ((_subject != null) && (_subject.size() > 0)) ?
-                (DCSubject) _subject.get(0) : null;
+                _subject.get(0) : null;
     }
     
     /**
@@ -218,7 +218,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setSubject(DCSubject subject) {
-        _subject = new ArrayList();
+        _subject = new ArrayList<DCSubject>();
         _subject.add(subject);
     }
 
@@ -230,7 +230,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getDescriptions() {
-        return (_description == null) ? (_description = new ArrayList()) : _description;
+        return (_description == null) ? (_description = new ArrayList<String>()) : _description;
     }
 
     /**
@@ -240,7 +240,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		module descriptions to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setDescriptions(List descriptions) {
+    public void setDescriptions(List<String> descriptions) {
         _description = descriptions;
     }
     
@@ -252,7 +252,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getDescription() {
         return ((_description != null) && (_description.size() > 0)) ?
-                (String) _description.get(0) : null;
+                _description.get(0) : null;
     }
     
     /**
@@ -263,7 +263,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setDescription(String description) {
-        _description = new ArrayList();
+        _description = new ArrayList<String>();
         _description.add(description);
     }
 
@@ -275,7 +275,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getPublishers() {
-        return (_publisher == null) ? (_publisher = new ArrayList()) : _publisher;
+        return (_publisher == null) ? (_publisher = new ArrayList<String>()) : _publisher;
     }
 
     /**
@@ -285,7 +285,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		publishers to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setPublishers(List publishers) {
+    public void setPublishers(List<String> publishers) {
         _publisher = publishers;
     }
 
@@ -297,7 +297,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getPublisher() {
         return ((_publisher != null) && (_publisher.size() > 0)) ?
-                (String) _publisher.get(0) : null;
+                _publisher.get(0) : null;
     }
 
     /**
@@ -308,7 +308,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setPublisher(String publisher) {
-        _publisher = new ArrayList();
+        _publisher = new ArrayList<String>();
         _publisher.add(publisher);
     }
 
@@ -320,7 +320,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getContributors() {
-        return (_contributors == null) ? (_contributors = new ArrayList()) : _contributors;
+        return (_contributors == null) ? (_contributors = new ArrayList<String>()) : _contributors;
     }
 
     /**
@@ -330,7 +330,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		module contributors to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setContributors(List contributors) {
+    public void setContributors(List<String> contributors) {
         _contributors = contributors;
     }
 
@@ -342,7 +342,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getContributor() {
         return ((_contributors != null) && (_contributors.size() > 0)) ?
-                (String) _contributors.get(0) : null;
+                _contributors.get(0) : null;
     }
     
     /**
@@ -353,7 +353,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setContributor(String contributor) {
-        _contributors = new ArrayList();
+        _contributors = new ArrayList<String>();
         _contributors.add(contributor);
     }
 
@@ -365,7 +365,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getDates() {
-        return (_date == null) ? (_date = new ArrayList()) : _date;
+        return (_date == null) ? (_date = new ArrayList<Date>()) : _date;
     }
 
     /**
@@ -375,7 +375,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setDates(List dates) {
+    public void setDates(List<Date> dates) {
         _date = dates;
     }
     
@@ -387,7 +387,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public Date getDate() {
         return ((_date != null) && (_date.size() > 0)) ?
-                (Date) _date.get(0) : null;
+                _date.get(0) : null;
     }
     /**
      * Sets the DublinCore module date. Convenience method that can be used
@@ -397,7 +397,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setDate(Date date) {
-        _date = new ArrayList();
+        _date = new ArrayList<Date>();
         _date.add(date);
     }
 
@@ -409,7 +409,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getTypes() {
-        return (_type == null) ? (_type = new ArrayList()) : _type;
+        return (_type == null) ? (_type = new ArrayList<String>()) : _type;
     }
 
     /**
@@ -419,7 +419,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setTypes(List types) {
+    public void setTypes(List<String> types) {
         _type = types;
     }
     
@@ -431,7 +431,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getType() {
         return ((_type != null) && (_type.size() > 0)) ?
-                (String) _type.get(0) : null;
+                _type.get(0) : null;
     }
     
     /**
@@ -442,7 +442,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setType(String type) {
-        _type = new ArrayList();
+        _type = new ArrayList<String>();
         _type.add(type);
     }
 
@@ -454,7 +454,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getFormats() {
-        return (_format == null) ? (_format = new ArrayList()) : _format;
+        return (_format == null) ? (_format = new ArrayList<String>()) : _format;
     }
 
     /**
@@ -464,7 +464,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		formats to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setFormats(List formats) {
+    public void setFormats(List<String> formats) {
         _format = formats;
     }
 
@@ -476,7 +476,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getFormat() {
         return ((_format != null) && (_format.size() > 0)) ?
-                (String) _format.get(0) : null;
+                _format.get(0) : null;
     }
 
     /**
@@ -487,7 +487,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setFormat(String format) {
-        _format = new ArrayList();
+        _format = new ArrayList<String>();
         _format.add(format);
     }
 
@@ -499,7 +499,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getIdentifiers() {
-        return (_identifier == null) ? (_identifier = new ArrayList()) : _identifier;
+        return (_identifier == null) ? (_identifier = new ArrayList<String>()) : _identifier;
     }
 
     /**
@@ -509,7 +509,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		identifiers to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setIdentifiers(List identifiers) {
+    public void setIdentifiers(List<String> identifiers) {
         _identifier = identifiers;
     }
     
@@ -521,7 +521,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getIdentifier() {
         return ((_identifier != null) && (_identifier.size() > 0)) ?
-                (String) _identifier.get(0) : null;
+                _identifier.get(0) : null;
     }
 
     /**
@@ -532,7 +532,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setIdentifier(String identifier) {
-        _identifier = new ArrayList();
+        _identifier = new ArrayList<String>();
         _identifier.add(identifier);
     }
 
@@ -544,7 +544,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getSources() {
-        return (_source == null) ? (_source = new ArrayList()) : _source;
+        return (_source == null) ? (_source = new ArrayList<String>()) : _source;
     }
 
     /**
@@ -554,7 +554,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		sources to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setSources(List sources) {
+    public void setSources(List<String> sources) {
         _source = sources;
     }
     
@@ -566,7 +566,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getSource() {
         return ((_source != null) && (_source.size() > 0)) ?
-                (String) _source.get(0) : null;
+                _source.get(0) : null;
     }
 
     /**
@@ -577,7 +577,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setSource(String source) {
-        _source = new ArrayList();
+        _source = new ArrayList<String>();
         _source.add(source);
     }
 
@@ -589,7 +589,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getLanguages() {
-        return (_language == null) ? (_language = new ArrayList()) : _language;
+        return (_language == null) ? (_language = new ArrayList<String>()) : _language;
     }
 
     /**
@@ -599,7 +599,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		languages to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setLanguages(List languages) {
+    public void setLanguages(List<String> languages) {
         _language = languages;
     }
 
@@ -611,7 +611,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getLanguage() {
         return ((_language != null) && (_language.size() > 0)) ?
-                (String) _language.get(0) : null;
+                _language.get(0) : null;
     }
     /**
      * Sets the DublinCore module language. Convenience method that can be used
@@ -621,7 +621,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setLanguage(String language) {
-        _language = new ArrayList();
+        _language = new ArrayList<String>();
         _language.add(language);
     }
 
@@ -633,7 +633,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getRelations() {
-        return (_relation == null) ? (_relation = new ArrayList()) : _relation;
+        return (_relation == null) ? (_relation = new ArrayList<String>()) : _relation;
     }
 
     /**
@@ -643,7 +643,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		relations to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setRelations(List relations) {
+    public void setRelations(List<String> relations) {
         _relation = relations;
     }
 
@@ -655,7 +655,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getRelation() {
         return ((_relation != null) && (_relation.size() > 0)) ?
-                (String) _relation.get(0) : null;
+                _relation.get(0) : null;
     }
 
     /**
@@ -666,7 +666,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setRelation(String relation) {
-        _relation = new ArrayList();
+        _relation = new ArrayList<String>();
         _relation.add(relation);
     }
 
@@ -678,7 +678,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getCoverages() {
-        return (_coverage == null) ? (_coverage = new ArrayList()) : _coverage;
+        return (_coverage == null) ? (_coverage = new ArrayList<String>()) : _coverage;
     }
 
     /**
@@ -688,7 +688,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		coverages to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setCoverages(List coverages) {
+    public void setCoverages(List<String> coverages) {
         _coverage = coverages;
     }
 
@@ -700,7 +700,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getCoverage() {
         return ((_coverage != null) && (_coverage.size() > 0)) ?
-                (String) _coverage.get(0) : null;
+                _coverage.get(0) : null;
     }
 
     /**
@@ -711,7 +711,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setCoverage(String coverage) {
-        _coverage = new ArrayList();
+        _coverage = new ArrayList<String>();
         _coverage.add(coverage);
     }
 
@@ -723,7 +723,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public List getRightsList() {
-        return (_rights == null) ? (_rights = new ArrayList()) : _rights;
+        return (_rights == null) ? (_rights = new ArrayList<String>()) : _rights;
     }
 
     /**
@@ -733,7 +733,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      * 		rights to set, an empty list or <b>null</b> if none.
      *
      */
-    public void setRightsList(List rights) {
+    public void setRightsList(List<String> rights) {
         _rights = rights;
     }
     
@@ -745,7 +745,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      */
     public String getRights() {
         return ((_rights != null) && (_rights.size() > 0)) ?
-                (String) _rights.get(0) : null;
+                _rights.get(0) : null;
     }
     
     /**
@@ -756,7 +756,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
      *
      */
     public void setRights(String rights) {
-        _rights = new ArrayList();
+        _rights = new ArrayList<String>();
         _rights.add(rights);
     }
 
@@ -832,7 +832,7 @@ public class DCModuleImpl extends ModuleImpl implements DCModule {
         basePropInterfaceMap.put("coverages", String.class);
         basePropInterfaceMap.put("rightsList", String.class);
 
-        Map basePropClassImplMap = new HashMap();
+        Map<Class, Class> basePropClassImplMap = new HashMap<Class, Class>();
         basePropClassImplMap.put(DCSubject.class,DCSubjectImpl.class);
 
         COPY_FROM_HELPER = new CopyFromHelper(DCModule.class,basePropInterfaceMap,basePropClassImplMap);

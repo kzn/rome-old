@@ -90,7 +90,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
         populateFeedHeader(feed,eFeed);
         checkFeedHeaderConstraints(eFeed);
         generateFeedModules(feed.getModules(),eFeed);
-        generateForeignMarkup(eFeed, (List)feed.getForeignMarkup()); 
+        generateForeignMarkup(eFeed, (List<Element>)feed.getForeignMarkup()); 
     }
 
     protected void addEntries(Feed feed,Element parent) throws FeedException {
@@ -232,7 +232,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
             eEntry.addContent(contentElement);
         }
         
-        generateForeignMarkup(eEntry, (List)entry.getForeignMarkup());
+        generateForeignMarkup(eEntry, (List<Element>)entry.getForeignMarkup());
     }
 
     protected void checkFeedHeaderConstraints(Element eFeed) throws FeedException {
@@ -329,7 +329,7 @@ public class Atom03Generator extends BaseWireFeedGenerator {
                     throw new FeedException("Invalid XML",ex);
                 }
 
-                List children = tmpDoc.getRootElement().removeContent();
+                List<Element> children = tmpDoc.getRootElement().removeContent();
                 contentElement.addContent(children);
             }
         }

@@ -77,7 +77,7 @@ public class RSS092Generator extends RSS091UserlandGenerator {
     }
 
     // Another one to thanks DW for
-    protected int getNumberOfEnclosures(List enclosures) {
+    protected int getNumberOfEnclosures(List<Enclosure> enclosures) {
         return (enclosures.size()>0) ? 1 : 0;
     }
 
@@ -89,9 +89,9 @@ public class RSS092Generator extends RSS091UserlandGenerator {
             eItem.addContent(generateSourceElement(source));
         }
 
-        List enclosures = item.getEnclosures();
+        List<Enclosure> enclosures = item.getEnclosures();
         for(int i = 0; i < getNumberOfEnclosures(enclosures); i++) {
-            eItem.addContent(generateEnclosure((Enclosure)enclosures.get(i)));
+            eItem.addContent(generateEnclosure(enclosures.get(i)));
         }
 
         List categories = item.getCategories();

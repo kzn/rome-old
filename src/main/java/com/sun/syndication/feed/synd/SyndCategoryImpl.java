@@ -257,10 +257,10 @@ class SyndCategoryListFacade extends AbstractList {
      * @return a list with DCSubject elements corresponding to the categories in the given list.
      *
      */
-    public static List convertElementsSyndCategoryToSubject(List cList) {
-        List sList = null;
+    public static List<DCSubject> convertElementsSyndCategoryToSubject(List cList) {
+        List<DCSubject> sList = null;
         if (cList!=null) {
-            sList = new ArrayList();
+            sList = new ArrayList<DCSubject>();
             for (int i=0;i<cList.size();i++) {
                 SyndCategoryImpl sCat = (SyndCategoryImpl) cList.get(i);
                 DCSubject subject = null;

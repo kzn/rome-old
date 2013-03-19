@@ -19,6 +19,7 @@ package com.sun.syndication.io;
 import com.sun.syndication.feed.module.Module;
 import com.sun.syndication.feed.WireFeed;
 import org.jdom.Element;
+import org.jdom.Namespace;
 
 import java.util.Set;
 
@@ -51,7 +52,7 @@ public interface ModuleGenerator {
      *
      * @return a set with all the URIs (JDOM Namespace elements) this module generator uses.
      */
-    public Set getNamespaces();
+    public Set<Namespace> getNamespaces();
 
     /**
      * Generates and injects module metadata into an XML node (JDOM element).

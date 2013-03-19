@@ -82,7 +82,7 @@ public class Atom03Parser extends BaseWireFeedParser {
 
         e = eFeed.getChild("author",getAtomNamespace());
         if (e!=null) {
-            List authors = new ArrayList();
+            List<Person> authors = new ArrayList<Person>();
             authors.add(parsePerson(e));
             feed.setAuthors(authors);
         }
@@ -165,8 +165,8 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Link)
-    private List parseLinks(List eLinks,boolean alternate) {
-        List links = new ArrayList();
+    private List<Link> parseLinks(List eLinks,boolean alternate) {
+        List<Link> links = new ArrayList<Link>();
         for (int i=0;i<eLinks.size();i++) {
             Element eLink = (Element) eLinks.get(i);
             String rel = getAttributeValue(eLink, "rel");
@@ -185,12 +185,12 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Link)
-    private List parseAlternateLinks(List eLinks) {
+    private List<Link> parseAlternateLinks(List eLinks) {
         return parseLinks(eLinks,true);
     }
 
     // List(Elements) -> List(Link)
-    private List parseOtherLinks(List eLinks) {
+    private List<Link> parseOtherLinks(List eLinks) {
         return parseLinks(eLinks,false);
     }
 
@@ -212,8 +212,8 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Persons)
-    private List parsePersons(List ePersons) {
-        List persons = new ArrayList();
+    private List<Person> parsePersons(List ePersons) {
+        List<Person> persons = new ArrayList<Person>();
         for (int i=0;i<ePersons.size();i++) {
             persons.add(parsePerson((Element)ePersons.get(i)));
         }
@@ -261,8 +261,8 @@ public class Atom03Parser extends BaseWireFeedParser {
     }
 
     // List(Elements) -> List(Entries)
-    private List parseEntries(List eEntries) {
-        List entries = new ArrayList();
+    private List<Entry> parseEntries(List eEntries) {
+        List<Entry> entries = new ArrayList<Entry>();
         for (int i=0;i<eEntries.size();i++) {
             entries.add(parseEntry((Element)eEntries.get(i)));
         }
@@ -283,7 +283,7 @@ public class Atom03Parser extends BaseWireFeedParser {
 
         e = eEntry.getChild("author",getAtomNamespace());
         if (e!=null) {
-            List authors = new ArrayList();
+            List<Person> authors = new ArrayList<Person>();
             authors.add(parsePerson(e));
             entry.setAuthors(authors);
         }
@@ -320,7 +320,7 @@ public class Atom03Parser extends BaseWireFeedParser {
 
         eList = eEntry.getChildren("content",getAtomNamespace());
         if (eList.size()>0) {
-            List content = new ArrayList();
+            List<Content> content = new ArrayList<Content>();
             for (int i=0;i<eList.size();i++) {
                 content.add(parseContent((Element)eList.get(i)));
             }

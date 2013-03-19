@@ -28,6 +28,7 @@ import org.jdom.Element;
 import org.jdom.Namespace;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -172,8 +173,8 @@ public class DCModuleParser implements ModuleParser {
      * @param eList the element list to parse.
      * @return a list of subjects parsed from the elements.
      */
-    protected final List parseSubjects(List eList) {
-        List subjects = new ArrayList();
+    protected final List<DCSubject> parseSubjects(List eList) {
+        List<DCSubject> subjects = new ArrayList<DCSubject>();
         for (Iterator i = eList.iterator(); i.hasNext();) {
             Element eSubject = (Element) i.next();
             Element eDesc = eSubject.getChild("Description", getRDFNamespace());
@@ -203,8 +204,8 @@ public class DCModuleParser implements ModuleParser {
      * @param eList the list of elements to parse.
      * @return the list of strings
      */
-    protected final List parseElementList(List eList) {
-        List values= new ArrayList();
+    protected final List<String> parseElementList(List eList) {
+        List<String> values= new ArrayList<String>();
         for (Iterator i = eList.iterator(); i.hasNext();) {
             Element e = (Element) i.next();
             values.add(e.getText());
@@ -219,8 +220,8 @@ public class DCModuleParser implements ModuleParser {
      * @param eList the list of elements to parse.
      * @return the list of dates.
      */
-    protected final List parseElementListDate(List eList) {
-        List values = new ArrayList();
+    protected final List<Date> parseElementListDate(List eList) {
+        List<Date> values = new ArrayList<Date>();
         for (Iterator i = eList.iterator(); i.hasNext();) {
             Element e = (Element) i.next();
             values.add(DateParser.parseDate(e.getText()));

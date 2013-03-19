@@ -93,7 +93,7 @@ public class RSS092Parser extends RSS091UserlandParser {
         // just saving to write some code.
         List eEnclosures = eItem.getChildren("enclosure");//getRSSNamespace()); DONT KNOW WHY DOESN'T WORK
         if (eEnclosures.size()>0) {
-            List enclosures = new ArrayList();
+            List<Enclosure> enclosures = new ArrayList<Enclosure>();
             for (int i=0;i<eEnclosures.size();i++) {
                 e = (Element) eEnclosures.get(i);
 
@@ -120,10 +120,10 @@ public class RSS092Parser extends RSS091UserlandParser {
         return item;
     }
 
-    protected List parseCategories(List eCats) {
-        List cats = null;
+    protected List<Category> parseCategories(List eCats) {
+        List<Category> cats = null;
         if (eCats.size()>0) {
-            cats = new ArrayList();
+            cats = new ArrayList<Category>();
             for (int i=0;i<eCats.size();i++) {
                 Category cat = new Category();
                 Element e = (Element) eCats.get(i);

@@ -167,7 +167,7 @@ public class ToStringBean implements Serializable {
                     //NEW
                     String[] tsInfo = new String[2];
                     tsInfo[0] = ePrefix;
-                    Stack stack = (Stack) PREFIX_TL.get();
+                    Stack<String[]> stack = (Stack<String[]>) PREFIX_TL.get();
                     stack.push(tsInfo);
                     String s = (eValue!=null) ? eValue.toString() : "null";
                     stack.pop();
@@ -196,7 +196,7 @@ public class ToStringBean implements Serializable {
                     //NEW
                     String[] tsInfo = new String[2];
                     tsInfo[0] = cPrefix;
-                    Stack stack = (Stack) PREFIX_TL.get();
+                    Stack<String[]> stack = (Stack<String[]>) PREFIX_TL.get();
                     stack.push(tsInfo);
                     String s = (cValue!=null) ? cValue.toString() : "null";
                     stack.pop();
@@ -215,7 +215,7 @@ public class ToStringBean implements Serializable {
         else {
             String[] tsInfo = new String[2];
             tsInfo[0] = prefix;
-            Stack stack = (Stack) PREFIX_TL.get();
+            Stack<String[]> stack = (Stack<String[]>) PREFIX_TL.get();
             stack.push(tsInfo);
             String s = value.toString();
             stack.pop();

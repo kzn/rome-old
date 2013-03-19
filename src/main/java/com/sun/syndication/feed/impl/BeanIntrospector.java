@@ -33,10 +33,10 @@ import java.util.*;
  */
 public class BeanIntrospector {
 
-    private static final Map _introspected = new HashMap();
+    private static final Map<Class, PropertyDescriptor[]> _introspected = new HashMap<Class, PropertyDescriptor[]>();
 
     public static synchronized PropertyDescriptor[] getPropertyDescriptors(Class klass) throws IntrospectionException {
-        PropertyDescriptor[] descriptors = (PropertyDescriptor[]) _introspected.get(klass);
+        PropertyDescriptor[] descriptors = _introspected.get(klass);
         if (descriptors==null) {
             descriptors = getPDs(klass);
             _introspected.put(klass,descriptors);
@@ -46,9 +46,9 @@ public class BeanIntrospector {
 
     private static PropertyDescriptor[] getPDs(Class klass) throws IntrospectionException {
         Method[] methods = klass.getMethods();
-        Map getters = getPDs(methods,false);
-        Map setters = getPDs(methods,true);
-        List pds     = merge(getters,setters);
+        Map<String, PropertyDescriptor> getters = getPDs(methods,false);
+        Map<String, PropertyDescriptor> setters = getPDs(methods,true);
+        List<PropertyDescriptor> pds     = merge(getters,setters);
         PropertyDescriptor[] array = new PropertyDescriptor[pds.size()];
         pds.toArray(array);
         return array;
@@ -58,8 +58,8 @@ public class BeanIntrospector {
     private static final String GETTER = "get";
     private static final String BOOLEAN_GETTER = "is";
 
-    private static Map getPDs(Method[] methods,boolean setters) throws IntrospectionException {
-        Map pds = new HashMap();
+    private static Map<String, PropertyDescriptor> getPDs(Method[] methods,boolean setters) throws IntrospectionException {
+        Map<String, PropertyDescriptor> pds = new HashMap<String, PropertyDescriptor>();
         for (int i=0;i<methods.length;i++) {
             String pName = null;
             PropertyDescriptor pDescriptor = null;
@@ -92,14 +92,14 @@ public class BeanIntrospector {
         return pds;
     }
 
-    private static List merge(Map getters,Map setters) throws IntrospectionException {
-        List props = new ArrayList();
-        Set processedProps = new HashSet();
-        Iterator gs = getters.keySet().iterator();
+    private static List<PropertyDescriptor> merge(Map<String, PropertyDescriptor> getters,Map<String, PropertyDescriptor> setters) throws IntrospectionException {
+        List<PropertyDescriptor> props = new ArrayList<PropertyDescriptor>();
+        Set<String> processedProps = new HashSet<String>();
+        Iterator<String> gs = getters.keySet().iterator();
         while (gs.hasNext()) {
-            String name = (String) gs.next();
-            PropertyDescriptor getter = (PropertyDescriptor) getters.get(name);
-            PropertyDescriptor setter = (PropertyDescriptor) setters.get(name);
+            String name = gs.next();
+            PropertyDescriptor getter = getters.get(name);
+            PropertyDescriptor setter = setters.get(name);
             if (setter!=null) {
                 processedProps.add(name);
                 PropertyDescriptor prop = new PropertyDescriptor(name,getter.getReadMethod(),setter.getWriteMethod());
@@ -109,12 +109,12 @@ public class BeanIntrospector {
                 props.add(getter);
             }
         }
-        Set writeOnlyProps = new HashSet(setters.keySet());
+        Set<String> writeOnlyProps = new HashSet<String>(setters.keySet());
         writeOnlyProps.removeAll(processedProps);
-        Iterator ss = writeOnlyProps.iterator();
+        Iterator<String> ss = writeOnlyProps.iterator();
         while (ss.hasNext()) {
-            String name = (String) ss.next();
-            PropertyDescriptor setter = (PropertyDescriptor) setters.get(name);
+            String name = ss.next();
+            PropertyDescriptor setter = setters.get(name);
             props.add(setter);
         }
         return props;

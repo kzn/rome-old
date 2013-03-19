@@ -105,7 +105,7 @@ public class Atom10Generator extends BaseWireFeedGenerator {
     protected void addFeed(Feed feed,Element parent) throws FeedException {
         Element eFeed = parent;
         populateFeedHeader(feed,eFeed);
-        generateForeignMarkup(eFeed, (List)feed.getForeignMarkup());
+        generateForeignMarkup(eFeed, (List<Element>)feed.getForeignMarkup());
         checkFeedHeaderConstraints(eFeed);
         generateFeedModules(feed.getModules(),eFeed);
     }
@@ -124,7 +124,7 @@ public class Atom10Generator extends BaseWireFeedGenerator {
             eEntry.setAttribute("base", entry.getXmlBase(), Namespace.XML_NAMESPACE);
         }
         populateEntry(entry,eEntry);
-        generateForeignMarkup(eEntry, (List)entry.getForeignMarkup());
+        generateForeignMarkup(eEntry, (List<Element>)entry.getForeignMarkup());
         checkEntryConstraints(eEntry);
         generateItemModules(entry.getModules(),eEntry);
         parent.addContent(eEntry);
@@ -409,7 +409,7 @@ public class Atom10Generator extends BaseWireFeedGenerator {
                 catch (Exception ex) {
                     throw new FeedException("Invalid XML",ex);
                 }
-                List children = tmpDoc.getRootElement().removeContent();
+                List<Element> children = tmpDoc.getRootElement().removeContent();
                 contentElement.addContent(children);
             } else { 
                 // must be type html, text or some other non-XML format
@@ -453,7 +453,7 @@ public class Atom10Generator extends BaseWireFeedGenerator {
         throws IllegalArgumentException, FeedException, IOException {
         
         // Build a feed containing only the entry
-        List entries = new ArrayList();
+        List<Entry> entries = new ArrayList<Entry>();
         entries.add(entry);
         Feed feed1 = new Feed();
         feed1.setFeedType("atom_1.0");
@@ -464,7 +464,7 @@ public class Atom10Generator extends BaseWireFeedGenerator {
         Document feedDoc = wireFeedOutput.outputJDom(feed1);
 
         // Grab entry element from feed and get JDOM to serialize it
-        Element entryElement= (Element)feedDoc.getRootElement().getChildren().get(0);
+        Element entryElement= (Element) feedDoc.getRootElement().getChildren().get(0);
 
         XMLOutputter outputter = new XMLOutputter();
         outputter.output(entryElement, writer);

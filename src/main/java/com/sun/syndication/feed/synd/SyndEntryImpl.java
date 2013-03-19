@@ -420,7 +420,7 @@ public class SyndEntryImpl implements Serializable,SyndEntry {
         basePropInterfaceMap.put("enclosures",SyndEnclosure.class);
         basePropInterfaceMap.put("modules",Module.class);
 
-        Map basePropClassImplMap = new HashMap();
+        Map<Class, Class> basePropClassImplMap = new HashMap<Class, Class>();
         basePropClassImplMap.put(SyndContent.class,SyndContentImpl.class);
         basePropClassImplMap.put(SyndEnclosure.class,SyndEnclosureImpl.class);
         basePropClassImplMap.put(DCModule.class,DCModuleImpl.class);

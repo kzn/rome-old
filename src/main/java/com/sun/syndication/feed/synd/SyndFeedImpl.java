@@ -678,7 +678,7 @@ public class SyndFeedImpl implements Serializable, SyndFeed {
         basePropInterfaceMap.put("entries",SyndEntry.class);
         basePropInterfaceMap.put("modules",Module.class);
 
-        Map basePropClassImplMap = new HashMap();
+        Map<Class, Class> basePropClassImplMap = new HashMap<Class, Class>();
         basePropClassImplMap.put(SyndEntry.class,SyndEntryImpl.class);
         basePropClassImplMap.put(SyndImage.class,SyndImageImpl.class);
         basePropClassImplMap.put(DCModule.class,DCModuleImpl.class);

@@ -31,10 +31,10 @@ public class CopyFromHelper {
     private static final Object[] NO_PARAMS = new Object[0];
 
     private Class _beanInterfaceClass;
-    private Map _baseInterfaceMap; //ENTRIES(propertyName,interface.class)
-    private Map _baseImplMap;      //ENTRIES(interface.class,implementation.class)
+    private Map<String, Class<?>> _baseInterfaceMap; //ENTRIES(propertyName,interface.class)
+    private Map<Class, Class> _baseImplMap;      //ENTRIES(interface.class,implementation.class)
 
-    public CopyFromHelper(Class beanInterfaceClass,Map basePropInterfaceMap,Map basePropClassImplMap) {
+    public CopyFromHelper(Class beanInterfaceClass,Map basePropInterfaceMap,Map<Class, Class> basePropClassImplMap) {
         _beanInterfaceClass = beanInterfaceClass;
         _baseInterfaceMap = basePropInterfaceMap;
         _baseImplMap = basePropClassImplMap;
@@ -54,7 +54,7 @@ public class CopyFromHelper {
                         _baseInterfaceMap.containsKey(propertyName)) {   // only copies properties defined as copyFrom-able
                         Object value = pReadMethod.invoke(source,NO_PARAMS);
                         if (value!=null) {
-                            Class baseInterface = (Class) _baseInterfaceMap.get(propertyName);
+                            Class baseInterface = _baseInterfaceMap.get(propertyName);
                             value = doCopy(value,baseInterface);
                             pWriteMethod.invoke(target,new Object[]{value});
                         }
@@ -72,7 +72,7 @@ public class CopyFromHelper {
             return null;
         }
         else {
-            return (CopyFrom) ((Class)_baseImplMap.get(interfaceClass)).newInstance();
+            return (CopyFrom) _baseImplMap.get(interfaceClass).newInstance();
         }
     }
 
@@ -126,7 +126,7 @@ public class CopyFromHelper {
 
     private Object doCopyCollection(Collection collection,Class baseInterface) throws Exception {
         // expecting SETs or LISTs only, going default implementation of them
-        Collection newColl = (collection instanceof Set) ? (Collection)new HashSet() : (Collection)new ArrayList();
+        Collection<Object> newColl = (collection instanceof Set) ? (Collection)new HashSet() : (Collection)new ArrayList();
         Iterator i = collection.iterator();
         while (i.hasNext()) {
             Object element = doCopy(i.next(),baseInterface);
@@ -136,7 +136,7 @@ public class CopyFromHelper {
     }
 
     private Object doCopyMap(Map map,Class baseInterface) throws Exception {
-        Map newMap = new HashMap();
+        Map<Object, Object> newMap = new HashMap<Object, Object>();
         Iterator entries = map.entrySet().iterator();
         while (entries.hasNext()) {
             Map.Entry entry = (Map.Entry) entries.next();
@@ -147,7 +147,7 @@ public class CopyFromHelper {
         return newMap;
     }
 
-    private static final Set BASIC_TYPES = new HashSet();
+    private static final Set<Class> BASIC_TYPES = new HashSet<Class>();
 
     static {
         BASIC_TYPES.add(Boolean.class);

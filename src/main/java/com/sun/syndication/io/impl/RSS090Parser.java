@@ -254,10 +254,10 @@ public class RSS090Parser extends BaseWireFeedParser {
      * @param rssRoot the root element of the RSS document to parse for all items information.
      * @return a list with all the parsed RSSItem beans.
      */
-    protected List parseItems(Element rssRoot)  {
+    protected List<Item> parseItems(Element rssRoot)  {
         Collection eItems = getItems(rssRoot);
 
-        List items = new ArrayList();
+        List<Item> items = new ArrayList<Item>();
         for (Iterator i=eItems.iterator();i.hasNext();) {
             Element eItem = (Element) i.next();
             items.add(parseItem(rssRoot,eItem));

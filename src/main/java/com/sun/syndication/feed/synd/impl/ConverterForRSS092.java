@@ -51,7 +51,7 @@ public class ConverterForRSS092 extends ConverterForRSS091Userland {
             s.addAll(syndEntry.getCategories());   // DC subjects (as syndcat)
             syndEntry.setCategories(new ArrayList(s));    //c
         }
-        List enclosures = item.getEnclosures();
+        List<Enclosure> enclosures = item.getEnclosures();
         if (enclosures.size()>0) {
             syndEntry.setEnclosures(createSyndEnclosures(enclosures));
         }
@@ -70,10 +70,10 @@ public class ConverterForRSS092 extends ConverterForRSS091Userland {
         return syndCats;
     }
 
-    protected List createSyndEnclosures(List enclosures) {
+    protected List createSyndEnclosures(List<Enclosure> enclosures) {
         List sEnclosures = new ArrayList();
         for (int i=0;i<enclosures.size();i++) {
-            Enclosure enc = (Enclosure) enclosures.get(i);
+            Enclosure enc = enclosures.get(i);
             SyndEnclosure sEnc = new SyndEnclosureImpl();
             sEnc.setUrl(enc.getUrl());
             sEnc.setType(enc.getType());
@@ -97,8 +97,8 @@ public class ConverterForRSS092 extends ConverterForRSS091Userland {
         return item;
     }
 
-    protected List createRSSCategories(List sCats) {
-        List cats = new ArrayList();
+    protected List<Category> createRSSCategories(List sCats) {
+        List<Category> cats = new ArrayList<Category>();
         for (int i=0;i<sCats.size();i++) {
             SyndCategory sCat = (SyndCategory) sCats.get(i);
             Category cat = new Category();
@@ -109,8 +109,8 @@ public class ConverterForRSS092 extends ConverterForRSS091Userland {
         return cats;
     }
 
-    protected List createEnclosures(List sEnclosures) {
-        List enclosures = new ArrayList();
+    protected List<Enclosure> createEnclosures(List sEnclosures) {
+        List<Enclosure> enclosures = new ArrayList<Enclosure>();
         for (int i=0;i<sEnclosures.size();i++) {
             SyndEnclosure sEnc = (SyndEnclosure) sEnclosures.get(i);
             Enclosure enc = new Enclosure();

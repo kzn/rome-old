@@ -246,8 +246,8 @@ public class Atom10Parser extends BaseWireFeedParser {
     }
     
     // List(Elements) -> List(Link)
-    private List parseAlternateLinks(Feed feed, Entry entry, String baseURI, List eLinks) {
-        List links = new ArrayList();
+    private List<Link> parseAlternateLinks(Feed feed, Entry entry, String baseURI, List eLinks) {
+        List<Link> links = new ArrayList<Link>();
         for (int i=0;i<eLinks.size();i++) {
             Element eLink = (Element) eLinks.get(i);
             Link link = parseLink(feed, entry, baseURI, eLink);
@@ -260,8 +260,8 @@ public class Atom10Parser extends BaseWireFeedParser {
         return (links.size()>0) ? links : null;
     }
     
-    private List parseOtherLinks(Feed feed, Entry entry, String baseURI, List eLinks) {
-        List links = new ArrayList();
+    private List<Link> parseOtherLinks(Feed feed, Entry entry, String baseURI, List eLinks) {
+        List<Link> links = new ArrayList<Link>();
         for (int i=0;i<eLinks.size();i++) {
             Element eLink = (Element) eLinks.get(i);
             Link link = parseLink(feed, entry, baseURI, eLink);
@@ -294,8 +294,8 @@ public class Atom10Parser extends BaseWireFeedParser {
     }
     
     // List(Elements) -> List(Persons)
-    private List parsePersons(String baseURI, List ePersons) {
-        List persons = new ArrayList();
+    private List<Person> parsePersons(String baseURI, List ePersons) {
+        List<Person> persons = new ArrayList<Person>();
         for (int i=0;i<ePersons.size();i++) {
             persons.add(parsePerson(baseURI, (Element)ePersons.get(i)));
         }
@@ -340,8 +340,8 @@ public class Atom10Parser extends BaseWireFeedParser {
     }
     
     // List(Elements) -> List(Entries)
-    protected List parseEntries(Feed feed, String baseURI, List eEntries) {
-        List entries = new ArrayList();
+    protected List<Entry> parseEntries(Feed feed, String baseURI, List eEntries) {
+        List<Entry> entries = new ArrayList<Entry>();
         for (int i=0;i<eEntries.size();i++) {
             entries.add(parseEntry(feed, (Element)eEntries.get(i), baseURI));
         }
@@ -400,7 +400,7 @@ public class Atom10Parser extends BaseWireFeedParser {
         
         e = eEntry.getChild("content",getAtomNamespace());
         if (e!=null) {
-            List contents = new ArrayList();
+            List<Content> contents = new ArrayList<Content>();
             contents.add(parseContent(e));
             entry.setContents(contents);
         }
@@ -429,8 +429,8 @@ public class Atom10Parser extends BaseWireFeedParser {
         return entry;
     }
     
-    private List parseCategories(String baseURI, List eCategories) {
-        List cats = new ArrayList();
+    private List<Category> parseCategories(String baseURI, List eCategories) {
+        List<Category> cats = new ArrayList<Category>();
         for (int i=0;i<eCategories.size();i++) {
             Element eCategory = (Element) eCategories.get(i);
             cats.add(parseCategory(baseURI, eCategory));

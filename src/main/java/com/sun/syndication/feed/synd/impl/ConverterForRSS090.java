@@ -143,8 +143,8 @@ public class ConverterForRSS090 implements Converter {
         return image;
     }
 
-    protected List createRSSItems(List sEntries) {
-        List list = new ArrayList();
+    protected List<Item> createRSSItems(List sEntries) {
+        List<Item> list = new ArrayList<Item>();
         for (int i=0;i<sEntries.size();i++) {
             list.add(createRSSItem((SyndEntry)sEntries.get(i)));
         }

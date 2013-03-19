@@ -28,7 +28,7 @@ import java.util.*;
  *
  */
 public class SyModuleImpl extends ModuleImpl implements SyModule {
-    private static final Set PERIODS = new HashSet();
+    private static final Set<String> PERIODS = new HashSet<String>();
 
     static {
         PERIODS.add(HOURLY );
@@ -131,7 +131,7 @@ public class SyModuleImpl extends ModuleImpl implements SyModule {
         basePropInterfaceMap.put("updateFrequency",Integer.TYPE);
         basePropInterfaceMap.put("updateBase",Date.class);
 
-        Map basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class, Class> basePropClassImplMap = Collections.EMPTY_MAP;
 
         COPY_FROM_HELPER = new CopyFromHelper(SyModule.class,basePropInterfaceMap,basePropClassImplMap);
     }

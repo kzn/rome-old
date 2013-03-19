@@ -52,7 +52,7 @@ public interface DCModule extends Module,CopyFrom {
      *        to set, an empty list or <b>null</b> if none.
      *
      */
-    void setTitles(List titles);
+    void setTitles(List<String> titles);
 
     /**
      * Gets the DublinCore module title. Convenience method that can be used
@@ -87,7 +87,7 @@ public interface DCModule extends Module,CopyFrom {
      *        creators to set, an empty list or <b>null</b> if none.
      *
      */
-    void setCreators(List creators);
+    void setCreators(List<String> creators);
 
     /**
      * Gets the DublinCore module creator. Convenience method that can be used
@@ -122,7 +122,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	      module subjects to set, an empty list or <b>null</b> if none.
      *
      */
-    void setSubjects(List subjects);
+    void setSubjects(List<DCSubject> subjects);
 
     /**
      * Gets the DublinCore module subject. Convenience method that can be used
@@ -157,7 +157,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     module descriptions to set, an empty list or <b>null</b> if none.
      *
      */
-    void setDescriptions(List descriptions);
+    void setDescriptions(List<String> descriptions);
 
     /**
      * Gets the DublinCore module description. Convenience method that can be
@@ -192,7 +192,7 @@ public interface DCModule extends Module,CopyFrom {
      * 		publishers to set, an empty list or <b>null</b> if none.
      *
      */
-    void setPublishers(List publishers);
+    void setPublishers(List<String> publishers);
 
     /**
      * Gets the DublinCore module publisher. Convenience method that can be
@@ -227,7 +227,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     contributors to set, an empty list or <b>null</b> if none.
      *
      */
-    void setContributors(List contributors);
+    void setContributors(List<String> contributors);
 
     /**
      * Gets the DublinCore module contributor. Convenience method that can be
@@ -262,7 +262,7 @@ public interface DCModule extends Module,CopyFrom {
      *        an empty list or <b>null</b> if none.
      *
      */
-    void setDates(List dates);
+    void setDates(List<Date> dates);
 
     /**
      * Gets the DublinCore module date. Convenience method that can be used to
@@ -297,7 +297,7 @@ public interface DCModule extends Module,CopyFrom {
      *        an empty list or <b>null</b> if none.
      *
      */
-    void setTypes(List types);
+    void setTypes(List<String> types);
 
     /**
      * Gets the DublinCore module type. Convenience method that can be used
@@ -332,7 +332,7 @@ public interface DCModule extends Module,CopyFrom {
      * 		formats to set, an empty list or <b>null</b> if none.
      *
      */
-    void setFormats(List formats);
+    void setFormats(List<String> formats);
 
     /**
      * Gets the DublinCore module format. Convenience method that can be used
@@ -367,7 +367,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	      identifiers to set, an empty list or <b>null</b> if none.
      *
      */
-    void setIdentifiers(List identifiers);
+    void setIdentifiers(List<String> identifiers);
 
     /**
      * Gets the DublinCore module identifier. Convenience method that can be
@@ -402,7 +402,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     sources to set, an empty list or <b>null</b> if none.
      *
      */
-    void setSources(List sources);
+    void setSources(List<String> sources);
 
     /**
      * Gets the DublinCore module subject. Convenience method that can be used
@@ -437,7 +437,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     languages to set, an empty list or <b>null</b> if none.
      *
      */
-    void setLanguages(List languages);
+    void setLanguages(List<String> languages);
 
     /**
      * Gets the DublinCore module language. Convenience method that can be used
@@ -472,7 +472,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     relations to set, an empty list or <b>null</b> if none.
      *
      */
-    void setRelations(List relations);
+    void setRelations(List<String> relations);
 
     /**
      * Gets the DublinCore module relation. Convenience method that can be used
@@ -507,7 +507,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     coverages to set, an empty list or <b>null</b> if none.
      *
      */
-    void setCoverages(List coverages);
+    void setCoverages(List<String> coverages);
 
     /**
      * Gets the DublinCore module coverage. Convenience method that can be used
@@ -542,7 +542,7 @@ public interface DCModule extends Module,CopyFrom {
      * 	     rights to set, an empty list or <b>null</b> if none.
      *
      */
-    void setRightsList(List rights);
+    void setRightsList(List<String> rights);
 
     /**
      * Gets the DublinCore module right. Convenience method that can be used

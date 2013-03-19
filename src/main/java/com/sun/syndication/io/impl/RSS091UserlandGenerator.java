@@ -205,9 +205,9 @@ public class RSS091UserlandGenerator extends RSS090Generator {
 
         Element skipHours = eChannel.getChild("skipHours");
         if (skipHours!=null) {
-            List hours = skipHours.getChildren();
+            List<Element> hours = skipHours.getChildren();
             for (int i=0;i<hours.size();i++) {
-                Element hour = (Element) hours.get(i);
+                Element hour = hours.get(i);
                 int value = Integer.parseInt(hour.getText().trim());
                 if (isHourFormat24()) {
                     if (value<1 || value>24) {

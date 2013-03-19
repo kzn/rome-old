@@ -146,7 +146,7 @@ public class SyndEnclosureImpl implements Serializable,SyndEnclosure {
         basePropInterfaceMap.put("type",String.class);
         basePropInterfaceMap.put("length",Long.TYPE);
 
-        Map basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class, Class> basePropClassImplMap = Collections.EMPTY_MAP;
 
         COPY_FROM_HELPER = new CopyFromHelper(SyndEnclosure.class,basePropInterfaceMap,basePropClassImplMap);
     }

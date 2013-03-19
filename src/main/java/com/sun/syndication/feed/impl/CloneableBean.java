@@ -202,8 +202,8 @@ public class CloneableBean implements Serializable, Cloneable {
     }
 
     private Object cloneCollection(Collection collection) throws Exception {
-        Class mClass = collection.getClass();
-        Collection newColl = (Collection) mClass.newInstance();
+        Class<? extends Collection> mClass = collection.getClass();
+        Collection<Object> newColl = mClass.newInstance();
         Iterator i = collection.iterator();
         while (i.hasNext()) {
             Object element = doClone(i.next());
@@ -213,8 +213,8 @@ public class CloneableBean implements Serializable, Cloneable {
     }
 
     private Object cloneMap(Map map) throws Exception {
-        Class mClass = map.getClass();
-        Map newMap = (Map) mClass.newInstance();
+        Class<? extends Map> mClass = map.getClass();
+        Map<Object, Object> newMap = mClass.newInstance();
         Iterator entries = map.entrySet().iterator();
         while (entries.hasNext()) {
             Map.Entry entry = (Map.Entry) entries.next();
@@ -225,7 +225,7 @@ public class CloneableBean implements Serializable, Cloneable {
         return newMap;
     }
 
-    private static final Set BASIC_TYPES = new HashSet();
+    private static final Set<Class> BASIC_TYPES = new HashSet<Class>();
 
     static {
         BASIC_TYPES.add(Boolean.class);
@@ -239,7 +239,7 @@ public class CloneableBean implements Serializable, Cloneable {
         BASIC_TYPES.add(String.class);
     }
 
-    private static final Map CONSTRUCTOR_BASIC_TYPES = new HashMap();
+    private static final Map<Class, Class[]> CONSTRUCTOR_BASIC_TYPES = new HashMap<Class, Class[]>();
 
     static {
         CONSTRUCTOR_BASIC_TYPES.put(Boolean.class,new Class[]{Boolean.TYPE});

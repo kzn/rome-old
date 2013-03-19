@@ -42,8 +42,8 @@ public abstract class BaseWireFeedGenerator implements WireFeedGenerator {
         _feedModuleGenerators = new ModuleGenerators(type + FEED_MODULE_GENERATORS_POSFIX_KEY, this);
         _itemModuleGenerators = new ModuleGenerators(type + ITEM_MODULE_GENERATORS_POSFIX_KEY, this);
         _personModuleGenerators = new ModuleGenerators(type + PERSON_MODULE_GENERATORS_POSFIX_KEY, this);
-        Set allModuleNamespaces = new HashSet();
-        Iterator i = _feedModuleGenerators.getAllNamespaces().iterator();
+        Set<Namespace> allModuleNamespaces = new HashSet<Namespace>();
+        Iterator<Namespace> i = _feedModuleGenerators.getAllNamespaces().iterator();
         while (i.hasNext()) {
             allModuleNamespaces.add(i.next());
         }
@@ -81,11 +81,11 @@ public abstract class BaseWireFeedGenerator implements WireFeedGenerator {
         _personModuleGenerators.generateModules(modules, person);
     }
 
-    protected void generateForeignMarkup(Element e, List foreignMarkup) {
+    protected void generateForeignMarkup(Element e, List<Element> foreignMarkup) {
         if (foreignMarkup != null) {
-            Iterator elems = (Iterator) foreignMarkup.iterator();
+            Iterator<Element> elems = (Iterator<Element>) foreignMarkup.iterator();
             while (elems.hasNext()) {
-                Element elem = (Element) elems.next();
+                Element elem = elems.next();
                 Parent parent = elem.getParent();
                 if (parent != null) {
                     parent.removeContent(elem);
@@ -106,7 +106,7 @@ public abstract class BaseWireFeedGenerator implements WireFeedGenerator {
      * namespace declarations are present.
      */
     protected static void purgeUnusedNamespaceDeclarations(Element root) {
-        java.util.Set usedPrefixes = new java.util.HashSet();
+        java.util.Set<String> usedPrefixes = new java.util.HashSet<String>();
         collectUsedPrefixes(root, usedPrefixes);
 
         List list = root.getAdditionalNamespaces();
@@ -122,14 +122,14 @@ public abstract class BaseWireFeedGenerator implements WireFeedGenerator {
         }
     }
 
-    private static void collectUsedPrefixes(Element el, java.util.Set collector) {
+    private static void collectUsedPrefixes(Element el, java.util.Set<String> collector) {
         String prefix = el.getNamespacePrefix();
         if (prefix != null && prefix.length() > 0 && !collector.contains(prefix)) {
             collector.add(prefix);
         }
-        List kids = el.getChildren();
+        List<Element> kids = el.getChildren();
         for (int i = 0; i < kids.size(); i++) {
-            collectUsedPrefixes((Element) kids.get(i), collector); // recursion - worth it
+            collectUsedPrefixes(kids.get(i), collector); // recursion - worth it
         }
     }
 

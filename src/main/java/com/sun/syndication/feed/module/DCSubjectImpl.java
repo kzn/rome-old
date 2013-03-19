@@ -144,7 +144,7 @@ public class DCSubjectImpl implements Cloneable,Serializable, DCSubject {
         basePropInterfaceMap.put("taxonomyUri",String.class);
         basePropInterfaceMap.put("value",String.class);
 
-        Map basePropClassImplMap = Collections.EMPTY_MAP;
+        Map<Class, Class> basePropClassImplMap = Collections.EMPTY_MAP;
 
         COPY_FROM_HELPER = new CopyFromHelper(DCSubject.class,basePropInterfaceMap,basePropClassImplMap);
     }

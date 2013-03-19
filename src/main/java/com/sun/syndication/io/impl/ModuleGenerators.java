@@ -19,6 +19,7 @@ package com.sun.syndication.io.impl;
 import com.sun.syndication.feed.module.Module;
 import com.sun.syndication.io.ModuleGenerator;
 import org.jdom.Element;
+import org.jdom.Namespace;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,7 +29,7 @@ import java.util.Set;
 /**
  */
 public class ModuleGenerators extends PluginManager {
-    private Set _allNamespaces;
+    private Set<Namespace> _allNamespaces;
 
     public ModuleGenerators(String propertyKey, BaseWireFeedGenerator parentGenerator) {
         super(propertyKey, null, parentGenerator);
@@ -46,10 +47,10 @@ public class ModuleGenerators extends PluginManager {
         return getKeys();
     }
 
-    public void generateModules(List modules, Element element) {
+    public void generateModules(List<Module> modules, Element element) {
         Map generators = getPluginMap();
         for (int i = 0; i < modules.size(); i++) {
-            Module module = (Module) modules.get(i);
+            Module module = modules.get(i);
             String namespaceUri = module.getUri();
             ModuleGenerator generator = (ModuleGenerator)generators.get(namespaceUri);
             if (generator != null) {
@@ -58,9 +59,9 @@ public class ModuleGenerators extends PluginManager {
         }
     }
 
-    public Set getAllNamespaces() {
+    public Set<Namespace> getAllNamespaces() {
         if (_allNamespaces==null) {
-            _allNamespaces = new HashSet();
+            _allNamespaces = new HashSet<Namespace>();
             List mUris = getModuleNamespaces();
             for (int i=0;i<mUris.size();i++) {
                 ModuleGenerator mGen = getGenerator((String)mUris.get(i));

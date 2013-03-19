@@ -31,7 +31,7 @@ import java.util.*;
 public abstract class PluginManager {
     private String[] _propertyValues;
     private Map _pluginsMap;
-    private List _pluginsList;
+    private List<Object> _pluginsList;
     private List _keys;
     private WireFeedParser _parentParser;
     private WireFeedGenerator _parentGenerator;
@@ -64,7 +64,7 @@ public abstract class PluginManager {
         return _keys;
     }
 
-    protected List getPlugins() {
+    protected List<Object> getPlugins() {
         return _pluginsList;
     }
 
@@ -79,8 +79,8 @@ public abstract class PluginManager {
     // PRIVATE - LOADER PART
 
     private void loadPlugins() {
-        List finalPluginsList = new ArrayList();
-        _pluginsList = new ArrayList();
+        List<Object> finalPluginsList = new ArrayList<Object>();
+        _pluginsList = new ArrayList<Object>();
         _pluginsMap = new HashMap();
         String className = null;
         try {
@@ -98,7 +98,7 @@ public abstract class PluginManager {
                 _pluginsMap.put(getKey(plugin), plugin);
                 _pluginsList.add(plugin); // to preserve the order of definition in the rome.properties files
             }
-            Iterator i = _pluginsMap.values().iterator();
+            Iterator<Object> i = _pluginsMap.values().iterator();
             while (i.hasNext()) {
                 finalPluginsList.add(i.next()); // to remove overridden plugin impls
             }
@@ -130,10 +130,10 @@ public abstract class PluginManager {
      */
     private Class[] getClasses() throws ClassNotFoundException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        List classes = new ArrayList();
+        List<Class<? extends Object>> classes = new ArrayList<Class<? extends Object>>();
         boolean useLoadClass = Boolean.valueOf(System.getProperty("rome.pluginmanager.useloadclass", "false")).booleanValue();
         for (int i = 0; i <_propertyValues.length; i++) {
-        	Class mClass = (useLoadClass ?  classLoader.loadClass(_propertyValues[i]) : Class.forName(_propertyValues[i], true, classLoader));
+        	Class<? extends Object> mClass = (useLoadClass ?  classLoader.loadClass(_propertyValues[i]) : Class.forName(_propertyValues[i], true, classLoader));
             classes.add(mClass);
         }
         Class[] array = new Class[classes.size()];

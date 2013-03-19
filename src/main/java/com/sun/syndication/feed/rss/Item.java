@@ -45,7 +45,7 @@ public class Item implements Cloneable, Serializable, Extendable {
     private Description _description;
     private Content _content;
     private Source _source;
-    private List _enclosures;
+    private List<Enclosure> _enclosures;
     private List<Category> _categories;
     private Guid _guid;
     private String _comments;
@@ -242,8 +242,8 @@ public class Item implements Cloneable, Serializable, Extendable {
      *         an empty list if none.
      *
      */
-    public List getEnclosures() {
-        return (_enclosures==null) ? (_enclosures=new ArrayList()) : _enclosures;
+    public List<Enclosure> getEnclosures() {
+        return (_enclosures==null) ? (_enclosures=new ArrayList<Enclosure>()) : _enclosures;
     }
 
     /**
@@ -253,7 +253,7 @@ public class Item implements Cloneable, Serializable, Extendable {
      *        an empty list or <b>null</b> if none.
      *
      */
-    public void setEnclosures(List enclosures) {
+    public void setEnclosures(List<Enclosure> enclosures) {
         _enclosures = enclosures;
     }
 
